@@ -1,0 +1,61 @@
+using Godot;
+using System;
+using System.Collections.Generic;
+
+public partial class Tower : Node2D
+{
+	[Export] public PackedScene BulletScene;
+	
+	private List<Enemy> enemiesInRange = new List<Enemy>();
+	
+	public override void _Ready()
+	{
+		var area = GetNode<Area2D>("Area2D");
+		
+		area.BodyEntered += OnEnemyEntered;
+		area.BodyExited += OnEnemyExited;
+		
+		var timer = GetNode<Timer>("Timer");
+		timer.Timeout += OnShoot;
+	}
+	
+	private void OnEnemyEntered(Node body)
+	{
+		if (body is Enemy enemy)
+		{
+			enemiesInRange.Add(enemy);
+		}
+	}
+	
+	private void OnEnemyExited(Node body)
+	{
+		if (body is Enemy enemy)
+		{
+			enemiesInRange.Remove(enemy);
+		}
+	}
+	
+	private void OnShoot()
+	{
+		if(enemiesInRange.Count == 0) return;
+		
+		var target = enemiesInRange[0];
+		
+		var bullet = BulletScene.Instantiate<Bullet>();
+		GetTree().CurrentScene.AddChild(bullet);
+		
+		bullet.GlobalPosition = GlobalPosition;
+		bullet.SetTarget(target);
+	}
+	
+	public override void _Process(double delta)
+	{
+		if (enemiesInRange.Count == 0) return;
+		
+		Enemy target = enemiesInRange[0];
+		
+		Vector2 direction = (target.GlobalPosition - GlobalPosition).Normalized();
+		
+		Rotation = direction.Angle() + Mathf.Pi / 2;
+	}
+}
