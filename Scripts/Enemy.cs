@@ -10,7 +10,7 @@ public partial class Enemy : CharacterBody2D
 	
 	private List<Vector2> worldPath;
 	private int index = 0;
-	private float speed = 100f;
+	private float speed = 500f;
 	
 	public override void _Ready()
 	{

@@ -43,9 +43,11 @@ public partial class Tower : Node2D
 		
 		var bullet = BulletScene.Instantiate<Bullet>();
 		GetTree().CurrentScene.AddChild(bullet);
+		Vector2 direction = (target.GlobalPosition - GlobalPosition).Normalized();
 		
-		bullet.GlobalPosition = GlobalPosition;
+		bullet.GlobalPosition = GlobalPosition + 25 * (target.GlobalPosition - GlobalPosition).Normalized();
 		bullet.SetTarget(target);
+		bullet.SetDirection(direction);
 	}
 	
 	public override void _Process(double delta)
