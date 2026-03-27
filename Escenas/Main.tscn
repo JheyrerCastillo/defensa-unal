@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://d1p735di8uyka" path="res://Scripts/Main.cs" id="1_cm0pq"]
 [ext_resource type="Script" uid="uid://1kdibhq7sqxt" path="res://Scripts/EnemySpawner.cs" id="1_glv2v"]
 [ext_resource type="Texture2D" uid="uid://cxip2finfmib" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile024.png" id="2_3dxm6"]
-[ext_resource type="PackedScene" uid="uid://ctty1eaflyw6s" path="res://Escenas/Enemies/Enemy.tscn" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://bbwqlhmim3uwb" path="res://Escenas/Towers/Tower.tscn" id="2_a5a2i"]
 [ext_resource type="Texture2D" uid="uid://44och0htfqpp" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile050.png" id="3_lgr22"]
-[ext_resource type="PackedScene" uid="uid://bbwqlhmim3uwb" path="res://Escenas/Towers/Tower.tscn" id="3_r0du0"]
 [ext_resource type="Texture2D" uid="uid://dxjdmu218r5l5" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile049.png" id="5_trn2v"]
 [ext_resource type="Texture2D" uid="uid://ce0dosffkquah" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile054.png" id="6_03owx"]
+[ext_resource type="PackedScene" uid="uid://ctty1eaflyw6s" path="res://Escenas/Enemies/Enemy.tscn" id="8_bgy44"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trn2v"]
 texture = ExtResource("2_3dxm6")
@@ -38,7 +38,7 @@ sources/3 = SubResource("TileSetAtlasSource_20pc6")
 
 [node name="Main" type="Node2D" unique_id=895686029]
 script = ExtResource("1_cm0pq")
-TowerScene = ExtResource("3_r0du0")
+TowerScene = ExtResource("2_a5a2i")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=181915913]
 tile_set = SubResource("TileSet_cm0pq")
@@ -47,7 +47,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1849700927]
 script = ExtResource("1_glv2v")
-EnemyScene = ExtResource("2_uu6xs")
+EnemyScene = ExtResource("8_bgy44")
 
 [node name="Timer" type="Timer" parent="EnemySpawner" unique_id=1735497926]
 wait_time = 1.5

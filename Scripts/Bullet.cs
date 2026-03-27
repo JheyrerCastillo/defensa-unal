@@ -22,7 +22,7 @@ public partial class Bullet : Area2D
 	public override void _Process(double delta)
 	{
 		/* Anterior condición target == null || !IsInstanceValid(target) || */
-		if (GlobalPosition.X < 0  || GlobalPosition.X > 1153 || GlobalPosition.Y < 0 || GlobalPosition.Y > 645)
+		if (GlobalPosition.X < 0  || GlobalPosition.X > 1153 || GlobalPosition.Y < 0 || GlobalPosition.Y > 640)
 		{
 			QueueFree();
 			return;
