@@ -15,11 +15,11 @@ public partial class Main : Node2D
 	{
 		tileMap = GetNode<TileMap>("TileMap");
 		InitializeMap();
-		DrawMap();
+		
 		PrintMap();
 	}
 	
-	private void DrawMap()
+	private void DrawMap()  //esta funcion es debug
 	{
 		for(int y=0; y < height; y++)
 		{
@@ -68,6 +68,7 @@ public partial class Main : Node2D
 			if (sourceId == 1) map[cell.Y, cell.X] = 1;
 			else if (sourceId == 2) map[cell.Y, cell.X] = 2;
 			else if (sourceId == 3) map[cell.Y, cell.X] = 3;
+			else if (sourceId == 4) map[cell.Y, cell.X] = 4;
 			else map[cell.Y, cell.X] = 0;
 		}
 	}

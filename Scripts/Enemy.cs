@@ -55,7 +55,7 @@ public partial class Enemy : CharacterBody2D
 		
 		Position = Position.MoveToward(target, speed * (float)delta);
 		
-		Rotation = direction.Angle();
+		
 		
 		if (Position.DistanceTo(target) < 2f)
 		{
