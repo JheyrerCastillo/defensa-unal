@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://t75dml64lbf6"]
+
+[ext_resource type="Script" uid="uid://c8moxqv0kogmt" path="res://Scripts/MainMenu.cs" id="1_jg0v5"]
+[ext_resource type="Texture2D" uid="uid://bjs6w4quj8jlw" path="res://Assets/Menu/image.png" id="2_ij1hm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anpoc"]
+bg_color = Color(0.1882353, 0.79607844, 0, 0.7647059)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ck5re"]
+bg_color = Color(0.38039216, 0.6039216, 0.9372549, 0.7529412)
+
+[node name="MainMenu" type="Control" unique_id=639607001]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jg0v5")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1692291181]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 637.0
+texture = ExtResource("2_ij1hm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=186480590]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.5
+offset_top = -137.5
+offset_right = 204.5
+offset_bottom = 241.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer" unique_id=1484060463]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_anpoc")
+text = "JUGAR"
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=389391966]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_anpoc")
+text = "SALR"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1853230249]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -432.0
+offset_top = 52.0
+offset_right = 432.0
+offset_bottom = 176.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_ck5re")
+text = "UNAL DEFENSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

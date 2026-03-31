@@ -2,24 +2,33 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+public enum GameState
+{
+	Build,
+	Combat	
+}
+
 public partial class Main : Node2D
 {
 	[Export] public PackedScene TowerScene;
 	private int[,] map;
 	private TileMap tileMap;
 	
+	public GameState currentState = GameState.Build;
+	
 	private int height;
 	private int width;
 	
-	public override void _Ready()
+	public override async void _Ready()
 	{
 		tileMap = GetNode<TileMap>("TileMap");
+		
 		InitializeMap();
-		DrawMap();
+		
 		PrintMap();
 	}
 	
-	private void DrawMap()
+	private void DrawMap()  //esta funcion es debug
 	{
 		for(int y=0; y < height; y++)
 		{
@@ -68,6 +77,7 @@ public partial class Main : Node2D
 			if (sourceId == 1) map[cell.Y, cell.X] = 1;
 			else if (sourceId == 2) map[cell.Y, cell.X] = 2;
 			else if (sourceId == 3) map[cell.Y, cell.X] = 3;
+			else if (sourceId == 4) map[cell.Y, cell.X] = 4;
 			else map[cell.Y, cell.X] = 0;
 		}
 	}
@@ -118,11 +128,13 @@ public partial class Main : Node2D
 	
 	public override void _Input(InputEvent @event)
 	{
+		if (GetViewport().GuiGetHoveredControl() != null) return;
+		
+		if (currentState != GameState.Build) return;
+		
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
 		{
 			Vector2 localPos = tileMap.ToLocal(mouseEvent.Position);
-			
-			int tileSize = 64;
 			
 			Vector2I tilePos = tileMap.LocalToMap(localPos);
 			int x = tilePos.X;
@@ -137,7 +149,7 @@ public partial class Main : Node2D
 				
 				AddChild(tower);
 				
-				map[y,x] = 2;
+				map[y,x] = 4;
 			}
 		}
 	}
@@ -205,5 +217,14 @@ public partial class Main : Node2D
 	{
 		int value = map[pos.Y, pos.X];
 		return value == 1 || value == 2 || value == 3;
+	}
+	
+	public void _on_start_wave_button_pressed()
+	{
+		if (currentState != GameState.Build) return;
+		
+		currentState = GameState.Combat;
+		
+		GetNode<WaveManager>("WaveManager").StartWave();
 	}
 }

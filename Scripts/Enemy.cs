@@ -36,9 +36,16 @@ public partial class Enemy : CharacterBody2D
 	{
 		worldPath = new List<Vector2>();
 		
+		int tileSize = 64; 
+		
 		foreach (var tile in tilePath)
 		{
-			worldPath.Add(tileMap.ToGlobal(tileMap.MapToLocal(tile)));
+			Vector2 worldPos = new Vector2(
+				tile.X * tileSize + tileSize / 2,
+				tile.Y * tileSize + tileSize / 2
+			);
+			
+			worldPath.Add(worldPos);
 		}
 		
 		Position = worldPath[0];
@@ -55,7 +62,7 @@ public partial class Enemy : CharacterBody2D
 		
 		Position = Position.MoveToward(target, speed * (float)delta);
 		
-		Rotation = direction.Angle();
+		
 		
 		if (Position.DistanceTo(target) < 2f)
 		{

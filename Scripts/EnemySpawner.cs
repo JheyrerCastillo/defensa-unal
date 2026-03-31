@@ -6,22 +6,11 @@ public partial class EnemySpawner : Node2D
 {
 	[Export] public PackedScene EnemyScene;
 	
-	private int enemiesToSpawn = 5;
-	private int spawned = 0;
-	
 	private Main main;
 	
 	public override void _Ready()
 	{
 		main = GetParent<Main>();
-	}
-	
-	public void _on_timer_timeout()
-	{
-		if (spawned >= enemiesToSpawn) return;
-		
-		SpawnEnemy();
-		spawned++;
 	}
 	
 	public void SpawnEnemy()
