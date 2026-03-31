@@ -37,9 +37,4 @@ public partial class WaveManager : Node
 		waves.Add(new Wave(10, 0.8f));
 		waves.Add(new Wave(15, 0.6f));
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 }
