@@ -11,6 +11,9 @@ public enum GameState
 public partial class Main : Node2D
 {
 	[Export] public PackedScene TowerScene;
+	[Export] public PackedScene FastTowerScene;
+	[Export] public PackedScene HeavyTowerScene;
+	private int Seleccion = 1;
 	private int[,] map;
 	private TileMap tileMap;
 	
@@ -128,6 +131,19 @@ public partial class Main : Node2D
 	
 	public override void _Input(InputEvent @event)
 	{
+		if (@event is InputEventKey key && key.Pressed)
+		{
+			if (key.Keycode == Key.Key1)
+			{
+				Seleccion = 1;
+			} else if (key.Keycode == Key.Key2)
+			{
+				Seleccion = 2;
+			} else if (key.Keycode == Key.Key3)
+			{
+				Seleccion = 3;
+			}
+		}
 		if (GetViewport().GuiGetHoveredControl() != null) return;
 		
 		if (currentState != GameState.Build) return;
@@ -142,14 +158,34 @@ public partial class Main : Node2D
 			
 			if (CanBuild(x,y))
 			{
-				Node2D tower = TowerScene.Instantiate<Node2D>();
+				if (Seleccion == 1)
+				{
+					Tower tower = FastTowerScene.Instantiate<Tower>();
+					Vector2 worldPos = tileMap.MapToLocal(tilePos);
+					tower.Position = worldPos;
 				
-				Vector2 worldPos = tileMap.MapToLocal(tilePos);
-				tower.Position = worldPos;
+					AddChild(tower);
 				
-				AddChild(tower);
+					map[y,x] = 4;
+				} else if (Seleccion == 2)
+				{
+					Tower tower = TowerScene.Instantiate<Tower>();
+					Vector2 worldPos = tileMap.MapToLocal(tilePos);
+					tower.Position = worldPos;
 				
-				map[y,x] = 4;
+					AddChild(tower);
+				
+					map[y,x] = 4;
+				} else if (Seleccion == 3)
+				{
+					Tower tower = HeavyTowerScene.Instantiate<Tower>();
+					Vector2 worldPos = tileMap.MapToLocal(tilePos);
+					tower.Position = worldPos;
+				
+					AddChild(tower);
+				
+					map[y,x] = 4;
+				}
 			}
 		}
 	}
