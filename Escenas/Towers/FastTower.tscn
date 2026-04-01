@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dgaf20x4tag3x"]
+
+[ext_resource type="Script" uid="uid://c1hhj3pm3vkb" path="res://Scripts/FastTower.cs" id="1_cn5xm"]
+[ext_resource type="PackedScene" uid="uid://bm42jhl7o2tjh" path="res://Escenas/Bullets/Bullet.tscn" id="2_eb34q"]
+[ext_resource type="Texture2D" uid="uid://di6of1xyiycqy" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile291.png" id="3_eb34q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_usulm"]
+radius = 16.002811
+
+[node name="FastTower" type="Node2D" unique_id=218678994]
+script = ExtResource("1_cn5xm")
+BulletScene = ExtResource("2_eb34q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=952304059]
+rotation = -1.5780954
+texture = ExtResource("3_eb34q")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1715915350]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=20344768]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_usulm")
+
+[node name="Timer" type="Timer" parent="." unique_id=162075580]
+autostart = true
