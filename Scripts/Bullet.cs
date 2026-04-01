@@ -3,7 +3,7 @@ using System;
 
 public partial class Bullet : Area2D
 {
-	[Export] public float Speed = 3000f;
+	[Export] public float Speed = 5000f;
 	[Export] public int Damage = 1;
 	
 	private Enemy target;

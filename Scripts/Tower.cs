@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public partial class Tower : Node2D
 {
 	[Export] public PackedScene BulletScene;
+	[Export] public float Firerate = 2f;
 	
 	private List<Enemy> enemiesInRange = new List<Enemy>();
 	
@@ -14,8 +15,8 @@ public partial class Tower : Node2D
 		
 		area.BodyEntered += OnEnemyEntered;
 		area.BodyExited += OnEnemyExited;
-		
 		var timer = GetNode<Timer>("Timer");
+		timer.WaitTime = 1f/Firerate; // para que exista una cadencia de disparo
 		timer.Timeout += OnShoot;
 	}
 	

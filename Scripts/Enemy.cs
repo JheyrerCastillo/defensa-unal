@@ -10,7 +10,7 @@ public partial class Enemy : CharacterBody2D
 	
 	private List<Vector2> worldPath;
 	private int index = 0;
-	private float speed = 500f;
+	private float speed = 100f;
 	
 	public override void _Ready()
 	{
@@ -36,16 +36,9 @@ public partial class Enemy : CharacterBody2D
 	{
 		worldPath = new List<Vector2>();
 		
-		int tileSize = 64; 
-		
 		foreach (var tile in tilePath)
 		{
-			Vector2 worldPos = new Vector2(
-				tile.X * tileSize + tileSize / 2,
-				tile.Y * tileSize + tileSize / 2
-			);
-			
-			worldPath.Add(worldPos);
+			worldPath.Add(tileMap.ToGlobal(tileMap.MapToLocal(tile)));
 		}
 		
 		Position = worldPath[0];
