@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://1kdibhq7sqxt" path="res://Scripts/EnemySpawner.cs" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://bbwqlhmim3uwb" path="res://Escenas/Towers/Tower.tscn" id="2_a5a2i"]
 [ext_resource type="Texture2D" uid="uid://cl04stf2m4ypp" path="res://Assets/kenney_tower-defense-top-down/DirtGrassFloor.png" id="3_bgy44"]
+[ext_resource type="PackedScene" uid="uid://dgaf20x4tag3x" path="res://Escenas/Towers/FastTower.tscn" id="3_t36bp"]
 [ext_resource type="Texture2D" uid="uid://c2aouvs28q3md" path="res://Assets/kenney_tower-defense-top-down/DirtGrassRoad.png" id="4_bgy44"]
+[ext_resource type="PackedScene" uid="uid://hf6alo7ujmd" path="res://Escenas/Towers/HeavyTower.tscn" id="4_i2xo1"]
 [ext_resource type="Texture2D" uid="uid://dxjdmu218r5l5" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile049.png" id="5_trn2v"]
 [ext_resource type="Texture2D" uid="uid://ce0dosffkquah" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile054.png" id="6_03owx"]
 [ext_resource type="Texture2D" uid="uid://dmokp7vuc4qyn" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile038.png" id="7_3ihj5"]
@@ -4902,6 +4904,8 @@ sources/1 = SubResource("TileSetAtlasSource_ig2kn")
 [node name="Main" type="Node2D" unique_id=895686029]
 script = ExtResource("1_cm0pq")
 TowerScene = ExtResource("2_a5a2i")
+FastTowerScene = ExtResource("3_t36bp")
+HeavyTowerScene = ExtResource("4_i2xo1")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=181915913]
 tile_set = SubResource("TileSet_cm0pq")
