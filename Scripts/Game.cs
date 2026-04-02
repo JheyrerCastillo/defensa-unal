@@ -4,7 +4,7 @@ using System;
 public enum GameState
 {
 	Build,
-	Combat	
+	Combat
 }
 
 public partial class Game : Node2D
