@@ -9,8 +9,11 @@ public partial class WaveManager : Node
 	private List<Wave> waves = new List<Wave>();
 	private int currentWave = 0;
 	
+	private Game game;
+	
 	public override void _Ready()
 	{
+		game = GetParent<Game>();
 		CreateWaves();
 	}
 	
@@ -28,7 +31,7 @@ public partial class WaveManager : Node
 		
 		currentWave++;
 		
-		GetParent<Main>().currentState = GameState.Build;
+		game.EndWave();
 	}
 	
 	private void CreateWaves()
