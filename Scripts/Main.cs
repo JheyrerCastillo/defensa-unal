@@ -13,7 +13,15 @@ public partial class Main : Node2D
 	[Export] public PackedScene TowerScene;
 	[Export] public PackedScene FastTowerScene;
 	[Export] public PackedScene HeavyTowerScene;
-	private int Seleccion = 1;
+	
+	public enum TowerType
+	{
+		Fast,
+		Normal,
+		Heavy
+	}
+	private TowerType selectedTower;
+	
 	private int[,] map;
 	private TileMap tileMap;
 	
@@ -131,19 +139,6 @@ public partial class Main : Node2D
 	
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventKey key && key.Pressed)
-		{
-			if (key.Keycode == Key.Key1)
-			{
-				Seleccion = 1;
-			} else if (key.Keycode == Key.Key2)
-			{
-				Seleccion = 2;
-			} else if (key.Keycode == Key.Key3)
-			{
-				Seleccion = 3;
-			}
-		}
 		if (GetViewport().GuiGetHoveredControl() != null) return;
 		
 		if (currentState != GameState.Build) return;
@@ -151,39 +146,38 @@ public partial class Main : Node2D
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
 		{
 			Vector2 localPos = tileMap.ToLocal(mouseEvent.Position);
-			
 			Vector2I tilePos = tileMap.LocalToMap(localPos);
 			int x = tilePos.X;
 			int y = tilePos.Y;
 			
 			if (CanBuild(x,y))
 			{
-				if (Seleccion == 1)
+				PackedScene sceneToSpawn = null;
+				
+				switch (selectedTower)
 				{
-					Tower tower = FastTowerScene.Instantiate<Tower>();
+					case TowerType.Fast:
+						sceneToSpawn = FastTowerScene;
+						break;
+					
+					case TowerType.Normal:
+						sceneToSpawn = TowerScene;
+						break;
+					
+					case TowerType.Heavy:
+						sceneToSpawn = HeavyTowerScene;
+						break;
+				}
+				
+				if (sceneToSpawn != null)
+				{
+					Node2D tower = sceneToSpawn.Instantiate<Node2D>();
+					
 					Vector2 worldPos = tileMap.MapToLocal(tilePos);
 					tower.Position = worldPos;
-				
+					
 					AddChild(tower);
-				
-					map[y,x] = 4;
-				} else if (Seleccion == 2)
-				{
-					Tower tower = TowerScene.Instantiate<Tower>();
-					Vector2 worldPos = tileMap.MapToLocal(tilePos);
-					tower.Position = worldPos;
-				
-					AddChild(tower);
-				
-					map[y,x] = 4;
-				} else if (Seleccion == 3)
-				{
-					Tower tower = HeavyTowerScene.Instantiate<Tower>();
-					Vector2 worldPos = tileMap.MapToLocal(tilePos);
-					tower.Position = worldPos;
-				
-					AddChild(tower);
-				
+					
 					map[y,x] = 4;
 				}
 			}
@@ -205,7 +199,11 @@ public partial class Main : Node2D
 			new Vector2I(1,0),
 			new Vector2I(-1,0),
 			new Vector2I(0,1),
-			new Vector2I(0,-1)
+			new Vector2I(0,-1),
+			new Vector2I(1,1),
+			new Vector2I(-1,1),
+			new Vector2I(1,-1),
+			new Vector2I(-1,-1)
 		};
 		
 		while (queue.Count > 0)
@@ -218,11 +216,22 @@ public partial class Main : Node2D
 			{
 				Vector2I next = current + dir;
 				
-				if (IsInside(next) && IsWalkable(next) && !cameFrom.ContainsKey(next))
+				if (!IsInside(next)) continue;
+				
+				if (!IsWalkable(next)) continue;
+				
+				if (cameFrom.ContainsKey(next)) continue;
+				
+				if (dir.X != 0 && dir.Y != 0)
 				{
-					queue.Enqueue(next);
-					cameFrom[next] = current;
+					Vector2I side1 = new Vector2I(current.X + dir.X, current.Y);
+					Vector2I side2 = new Vector2I(current.X, current.Y + dir.Y);
+					
+					if (!IsWalkable(side1) || !IsWalkable(side2)) continue;
 				}
+				
+				queue.Enqueue(next);
+				cameFrom[next] = current;
 			}
 		}
 		
@@ -262,5 +271,20 @@ public partial class Main : Node2D
 		currentState = GameState.Combat;
 		
 		GetNode<WaveManager>("WaveManager").StartWave();
+	}
+	
+	public void _on_fast_tower_button_pressed()
+	{
+		selectedTower = TowerType.Fast;
+	}
+
+	public void _on_normal_tower_button_pressed()
+	{
+		selectedTower = TowerType.Normal;
+	}
+
+	public void _on_heavy_tower_button_pressed()
+	{
+		selectedTower = TowerType.Heavy;
 	}
 }

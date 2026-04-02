@@ -55,8 +55,6 @@ public partial class Enemy : CharacterBody2D
 		
 		Position = Position.MoveToward(target, speed * (float)delta);
 		
-		
-		
 		if (Position.DistanceTo(target) < 2f)
 		{
 			index++;
