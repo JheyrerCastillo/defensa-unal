@@ -22,6 +22,13 @@ public partial class Main : Node2D
 	}
 	private TowerType selectedTower;
 	
+	[Export] private Control panelMenu;
+	[Export] private Button toggleButton;
+	
+	private bool isPanelOpen = false;
+	private float closedX;
+	private float openX;
+	
 	private int[,] map;
 	private TileMap tileMap;
 	
@@ -37,6 +44,9 @@ public partial class Main : Node2D
 		InitializeMap();
 		
 		PrintMap();
+		
+		closedX = panelMenu.Position.X;
+		openX = closedX - panelMenu.Size.X;
 	}
 	
 	private void DrawMap()  //esta funcion es debug
@@ -271,6 +281,21 @@ public partial class Main : Node2D
 		currentState = GameState.Combat;
 		
 		GetNode<WaveManager>("WaveManager").StartWave();
+		
+		if (isPanelOpen)
+		{
+			isPanelOpen = false;
+			
+			Vector2 pos = panelMenu.Position;
+			pos.X = closedX;
+			panelMenu.Position = pos;
+			
+			toggleButton.Text = "<";
+			
+			Vector2 buttonPos = toggleButton.Position;
+			buttonPos.X = panelMenu.Position.X - toggleButton.Size.X;
+			toggleButton.Position = buttonPos;
+		}
 	}
 	
 	public void _on_fast_tower_button_pressed()
@@ -286,5 +311,29 @@ public partial class Main : Node2D
 	public void _on_heavy_tower_button_pressed()
 	{
 		selectedTower = TowerType.Heavy;
+	}
+	
+	public void _on_toggle_panel_button_pressed()
+	{
+		isPanelOpen = !isPanelOpen;
+		
+		Vector2 pos = panelMenu.Position;
+		
+		if (isPanelOpen)
+		{
+			pos.X = openX;
+			toggleButton.Text = ">";
+		} 
+		else 
+		{
+			pos.X = closedX;
+			toggleButton.Text = "<";
+		}
+		
+		panelMenu.Position = pos;
+		
+		Vector2 buttonPos = toggleButton.Position;
+		buttonPos.X = panelMenu.Position.X - toggleButton.Size.X;
+		toggleButton.Position = buttonPos;
 	}
 }
