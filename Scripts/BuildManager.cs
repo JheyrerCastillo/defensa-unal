@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class BuildManager : Node
 {
@@ -11,14 +12,11 @@ public partial class BuildManager : Node
 	private MapManager mapManager;
 	private Game game;
 	
-	public enum TowerType
-	{
-		Fast,
-		Normal,
-		Heavy
-	}
+	public enum TowerType {Fast, Normal, Heavy}
 	
 	private TowerType selectedTower = TowerType.Normal;
+	
+	private Dictionary<TowerType, PackedScene> towerScenes;
 	
 	public override void _Ready()
 	{
@@ -27,6 +25,13 @@ public partial class BuildManager : Node
 		tileMap = parent.GetNode<TileMap>("TileMap");
 		mapManager = parent.GetNode<MapManager>("MapManager");
 		game = parent.GetNode<Game>(".");
+		
+		towerScenes = new Dictionary<TowerType, PackedScene>()
+		{
+			{TowerType.Fast, FastTowerScene},
+			{TowerType.Normal, TowerScene},
+			{TowerType.Heavy, HeavyTowerScene}
+		};
 	}
 	
 	public void HandleInput(InputEvent @event)
@@ -45,9 +50,9 @@ public partial class BuildManager : Node
 			
 			if (mapManager.CanBuild(x,y))
 			{
-				PackedScene sceneToSpawn = GetSelectedScene();
+				if (!towerScenes.ContainsKey(selectedTower)) return;
 				
-				if (sceneToSpawn == null) return;
+				PackedScene sceneToSpawn = towerScenes[selectedTower];
 				
 				Node2D tower = sceneToSpawn.Instantiate<Node2D>();
 				
@@ -59,17 +64,6 @@ public partial class BuildManager : Node
 				mapManager.SetOcuppied(x,y);
 			}
 		}
-	}
-	
-	private PackedScene GetSelectedScene()
-	{
-		switch (selectedTower)
-		{
-			case TowerType.Fast: return FastTowerScene;
-			case TowerType.Normal: return TowerScene;
-			case TowerType.Heavy: return HeavyTowerScene;
-		}
-		return null;
 	}
 	
 	public void SetTower(TowerType type)
