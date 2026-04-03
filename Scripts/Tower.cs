@@ -12,9 +12,9 @@ public partial class Tower : Node2D
 	public override void _Ready()
 	{
 		var area = GetNode<Area2D>("Area2D");
-		
 		area.BodyEntered += OnEnemyEntered;
 		area.BodyExited += OnEnemyExited;
+		
 		var timer = GetNode<Timer>("Timer");
 		timer.WaitTime = 1f/Firerate; // para que exista una cadencia de disparo
 		timer.Timeout += OnShoot;
@@ -22,42 +22,61 @@ public partial class Tower : Node2D
 	
 	private void OnEnemyEntered(Node body)
 	{
-		if (body is Enemy enemy)
-		{
-			enemiesInRange.Add(enemy);
-		}
+		if (body is Enemy enemy) enemiesInRange.Add(enemy);
 	}
 	
 	private void OnEnemyExited(Node body)
 	{
-		if (body is Enemy enemy)
+		if (body is Enemy enemy) enemiesInRange.Remove(enemy);
+	}
+	
+	private void CleanEnemies()
+	{
+		
+	}
+	
+	private Enemy GetTarget()
+	{
+		enemiesInRange.RemoveAll(e => !IsInstanceValid(e));
+		
+		if (enemiesInRange.Count == 0) return null;
+		
+		var pq = new PriorityQueue<Enemy,int>();
+		
+		foreach (var enemy in enemiesInRange)
 		{
-			enemiesInRange.Remove(enemy);
+			pq.Enqueue(enemy, -enemy.GetHealth());
 		}
+		
+		return pq.Dequeue();
+	}
+	
+	private Vector2 GetDirectionTo(Enemy target)
+	{
+		return (target.GlobalPosition - GlobalPosition).Normalized();
 	}
 	
 	private void OnShoot()
 	{
-		if(enemiesInRange.Count == 0) return;
+		var target = GetTarget();
+		if (target == null) return;
 		
-		var target = enemiesInRange[0];
+		Vector2 direction = GetDirectionTo(target);
 		
 		var bullet = BulletScene.Instantiate<Bullet>();
 		GetTree().CurrentScene.AddChild(bullet);
-		Vector2 direction = (target.GlobalPosition - GlobalPosition).Normalized();
 		
-		bullet.GlobalPosition = GlobalPosition + 25 * (target.GlobalPosition - GlobalPosition).Normalized();
+		bullet.GlobalPosition = GlobalPosition + 25 * direction;
 		bullet.SetTarget(target);
 		bullet.SetDirection(direction);
 	}
 	
 	public override void _Process(double delta)
 	{
-		if (enemiesInRange.Count == 0) return;
+		var target = GetTarget();
+		if (target == null) return;
 		
-		Enemy target = enemiesInRange[0];
-		
-		Vector2 direction = (target.GlobalPosition - GlobalPosition).Normalized();
+		Vector2 direction = GetDirectionTo(target);
 		
 		Rotation = direction.Angle() + Mathf.Pi / 2;
 	}

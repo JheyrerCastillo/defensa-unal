@@ -12,6 +12,11 @@ public partial class Enemy : CharacterBody2D
 	private int index = 0;
 	private float speed = 100f;
 	
+	public int GetHealth()
+	{
+		return currentHealth;
+	}
+	
 	public override void _Ready()
 	{
 		currentHealth = MaxHealth;
