@@ -5,6 +5,7 @@ public partial class UIManager : Node
 {
 	[Export] private Control panelMenu;
 	[Export] private Button toggleButton;
+	[Export] private Control gameOverPanel;
 	
 	[Export] public PackedScene TowerScene;
 	[Export] public PackedScene FastTowerScene;
@@ -42,6 +43,17 @@ public partial class UIManager : Node
 		openX = closedX - panelMenu.Size.X;
 		
 		UpdateTowerButtons();
+	}
+	
+	public void ShowGameOver()
+	{
+		gameOverPanel.Visible = true;
+	}
+	
+	private void RestartButton()
+	{
+		GetTree().Paused = false;
+		GetTree().ReloadCurrentScene();
 	}
 	
 	private int GetTowerCost(PackedScene scene)

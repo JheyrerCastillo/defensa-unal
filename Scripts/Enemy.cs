@@ -15,6 +15,8 @@ public partial class Enemy : CharacterBody2D
 	private int index = 0;
 	private float speed = 100f;
 	
+	private Game game;
+	
 	public int GetHealth()
 	{
 		return currentHealth;
@@ -23,6 +25,7 @@ public partial class Enemy : CharacterBody2D
 	public override void _Ready()
 	{
 		currentHealth = MaxHealth;
+		game = GetTree().CurrentScene.GetNode<Game>("Game");
 		moneyManager = GetTree().CurrentScene.GetNode<MoneyManager>("Game/MoneyManager");
 	}
 	
@@ -57,7 +60,13 @@ public partial class Enemy : CharacterBody2D
 	
 	public override void _Process(double delta)
 	{
-		if (worldPath == null || index >= worldPath.Count) return;
+		if (worldPath == null) return;
+		
+		if (index >= worldPath.Count)
+		{
+			game.GameOver();
+			return;
+		}
 		
 		Vector2 target = worldPath[index];
 		
@@ -69,5 +78,10 @@ public partial class Enemy : CharacterBody2D
 		{
 			index++;
 		}
+	}
+	
+	private void OnReachEnd()
+	{
+		
 	}
 }
