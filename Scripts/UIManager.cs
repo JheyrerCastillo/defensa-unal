@@ -102,16 +102,16 @@ public partial class UIManager : Node
 	
 	public void SelectedFastTower()
 	{
-		buildManager.SetTower(BuildManager.TowerType.Fast);
+		buildManager.SetTower(TowerType.Fast);
 	}
 	
 	public void SelectedNormalTower()
 	{
-		buildManager.SetTower(BuildManager.TowerType.Normal);
+		buildManager.SetTower(TowerType.Normal);
 	}
 	
 	public void SelectedHeavyTower()
 	{
-		buildManager.SetTower(BuildManager.TowerType.Heavy);
+		buildManager.SetTower(TowerType.Heavy);
 	}
 }

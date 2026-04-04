@@ -13,9 +13,7 @@ public partial class BuildManager : Node
 	private Game game;
 	private MoneyManager moneyManager;
 	
-	public enum TowerType {Fast, Normal, Heavy}
-	
-	private TowerType selectedTower = TowerType.Normal;
+	private TowerType? selectedTower = null;
 	
 	private Dictionary<TowerType, PackedScene> towerScenes;
 	
@@ -50,8 +48,8 @@ public partial class BuildManager : Node
 			
 			if (mapManager.CanBuild(x,y))
 			{
-				if (!towerScenes.ContainsKey(selectedTower)) return;
-				PackedScene sceneToSpawn = towerScenes[selectedTower];
+				if (!towerScenes.ContainsKey(selectedTower.Value)) return;
+				PackedScene sceneToSpawn = towerScenes[selectedTower.Value];
 				
 				Tower towerInstance = sceneToSpawn.Instantiate<Tower>();
 				int cost = towerInstance.Cost;
