@@ -1,14 +1,15 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Wave
 {
-	public int enemyCount;
+	public List<EnemySpawnData> enemies;
 	public float spawnDelay;
 	
-	public Wave(int count, float delay)
+	public Wave(List<EnemySpawnData> enemies, float delay)
 	{
-		enemyCount = count;
-		spawnDelay = delay;
+		this.enemies = enemies;
+		this.spawnDelay = delay;
 	}
 }

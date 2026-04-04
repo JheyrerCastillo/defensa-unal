@@ -23,11 +23,14 @@ public partial class WaveManager : Node
 		{
 			Wave wave = waves[w];
 			
-			for (int i = 0; i < wave.enemyCount; i++)
+			foreach (var enemyData in wave.enemies)
 			{
-				Spawner.SpawnEnemy();
-				
-				await ToSignal(GetTree().CreateTimer(wave.spawnDelay), "timeout");
+				for (int i = 0; i < enemyData.count; i++)
+				{
+					Spawner.SpawnEnemy(enemyData.type);
+					
+					await ToSignal(GetTree().CreateTimer(wave.spawnDelay), "timeout");
+				}
 			}
 			
 			await ToSignal(GetTree().CreateTimer(2f), "timeout");
@@ -36,8 +39,17 @@ public partial class WaveManager : Node
 	
 	private void CreateWaves()
 	{
-		waves.Add(new Wave(5, 1.0f));
-		waves.Add(new Wave(10, 0.8f));
-		waves.Add(new Wave(15, 0.6f));
+		waves.Add(new Wave(new List<EnemySpawnData>
+		{
+			new EnemySpawnData(EnemyType.Normal, 5)
+		}, 1.0f));
+		waves.Add(new Wave(new List<EnemySpawnData>
+		{
+			new EnemySpawnData(EnemyType.Normal, 15)
+		}, 0.75f));
+		waves.Add(new Wave(new List<EnemySpawnData>
+		{
+			new EnemySpawnData(EnemyType.Normal, 30)
+		}, 0.5f));
 	}
 }
