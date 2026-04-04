@@ -1,37 +1,37 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public partial class WaveManager : Node
 {
 	[Export] public EnemySpawner Spawner;
 	
 	private List<Wave> waves = new List<Wave>();
-	private int currentWave = 0;
 	
-	private Game game;
-	
-	public override void _Ready()
+	public override async void _Ready()
 	{
-		game = GetParent<Game>();
 		CreateWaves();
+		await RunWaves();
 	}
 	
-	public async void StartWave()
+	public async Task RunWaves()
 	{
-		if (currentWave >= waves.Count) return;
+		await ToSignal(GetTree().CreateTimer(5f), "timeout");
 		
-		Wave wave = waves[currentWave];
-		
-		for (int i = 0; i < wave.enemyCount; i++)
+		for (int w = 0; w < waves.Count; w++)
 		{
-			Spawner.SpawnEnemy();
-			await ToSignal(GetTree().CreateTimer(wave.spawnDelay), "timeout");
+			Wave wave = waves[w];
+			
+			for (int i = 0; i < wave.enemyCount; i++)
+			{
+				Spawner.SpawnEnemy();
+				
+				await ToSignal(GetTree().CreateTimer(wave.spawnDelay), "timeout");
+			}
+			
+			await ToSignal(GetTree().CreateTimer(2f), "timeout");
 		}
-		
-		currentWave++;
-		
-		game.EndWave();
 	}
 	
 	private void CreateWaves()

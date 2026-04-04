@@ -100,26 +100,6 @@ public partial class UIManager : Node
 		toggleButton.Position = buttonPos;
 	}
 	
-	public void OnStartWavePressed()
-	{
-		game.StartWave();
-		
-		if (isPanelOpen)
-		{
-			isPanelOpen = false;
-			
-			Vector2 pos = panelMenu.Position;
-			pos.X = closedX;
-			panelMenu.Position = pos;
-			
-			toggleButton.Text = "<";
-			
-			Vector2 buttonPos = toggleButton.Position;
-			buttonPos.X = panelMenu.Position.X - toggleButton.Size.X;
-			toggleButton.Position = buttonPos;
-		}
-	}
-	
 	public void SelectedFastTower()
 	{
 		buildManager.SetTower(BuildManager.TowerType.Fast);

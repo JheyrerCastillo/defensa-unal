@@ -40,8 +40,6 @@ public partial class BuildManager : Node
 	{
 		if (GetViewport().GuiGetHoveredControl() != null) return;
 		
-		if (game.currentState != GameState.Build) return;
-		
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
 		{
 			Vector2 localPos = tileMap.ToLocal(mouseEvent.Position);

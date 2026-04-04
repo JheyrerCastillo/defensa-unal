@@ -5350,14 +5350,6 @@ layout_mode = 2
 text = "Heavy"
 icon = ExtResource("18_dj7fj")
 
-[node name="Control" type="Control" parent="UI/Panel/MarginContainer/VBoxContainer" unique_id=1200584506]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="StartWaveButton" type="Button" parent="UI/Panel/MarginContainer/VBoxContainer" unique_id=450522043]
-layout_mode = 2
-text = "Iniciar Oleada"
-
 [node name="TogglePanelButton" type="Button" parent="UI" unique_id=755892706]
 anchors_preset = 1
 anchor_left = 1.0
@@ -5370,5 +5362,4 @@ text = "<"
 [connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/FastTowerButton" to="UI/UIManager" method="SelectedFastTower"]
 [connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/NormalTowerButton" to="UI/UIManager" method="SelectedNormalTower"]
 [connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/HeavyTowerButton" to="UI/UIManager" method="SelectedHeavyTower"]
-[connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/StartWaveButton" to="UI/UIManager" method="OnStartWavePressed"]
 [connection signal="pressed" from="UI/TogglePanelButton" to="UI/UIManager" method="TogglePanel"]
