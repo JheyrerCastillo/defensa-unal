@@ -35,10 +35,12 @@ public partial class UIManager : Node
 		normalTowerButton = GetNode<Button>("../Panel/MarginContainer/VBoxContainer/NormalTowerButton");
 		heavyTowerButton = GetNode<Button>("../Panel/MarginContainer/VBoxContainer/HeavyTowerButton");
 		
+		//actualiza indicador de dinero con la disponible
 		moneyManager.MoneyChanged += OnMoneyChanged;
 		
 		OnMoneyChanged(moneyManager.GetMoney());
 		
+		//Abre o cierra panel desplegable
 		closedX = panelMenu.Position.X;
 		openX = closedX - panelMenu.Size.X;
 		
@@ -47,17 +49,20 @@ public partial class UIManager : Node
 	
 	public void ShowGameOver()
 	{
+		//Muestra pantalla de GameOver
 		gameOverPanel.Visible = true;
 	}
 	
 	private void RestartButton()
 	{
+		//Reanuda el juego y reinicia la escena
 		GetTree().Paused = false;
 		GetTree().ReloadCurrentScene();
 	}
 	
 	private int GetTowerCost(PackedScene scene)
 	{
+		//Muestra el costo de las torres disponibles
 		Tower tower = scene.Instantiate<Tower>();
 		return tower.Cost;
 	}
@@ -77,6 +82,7 @@ public partial class UIManager : Node
 	{
 		int money = moneyManager.GetMoney();
 		
+		//activa o desactiva boton de torre si hay dinero para comprarlo
 		fastTowerButton.Disabled = money < GetTowerCost(FastTowerScene);
 		normalTowerButton.Disabled = money < GetTowerCost(TowerScene);
 		heavyTowerButton.Disabled = money < GetTowerCost(HeavyTowerScene);
@@ -111,7 +117,6 @@ public partial class UIManager : Node
 		buttonPos.X = panelMenu.Position.X - toggleButton.Size.X;
 		toggleButton.Position = buttonPos;
 	}
-	
 	public void SelectedFastTower()
 	{
 		buildManager.SetTower(TowerType.Fast);

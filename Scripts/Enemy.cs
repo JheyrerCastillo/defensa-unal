@@ -31,8 +31,10 @@ public partial class Enemy : CharacterBody2D
 	
 	public void TakeDamage(int damage)
 	{
+		//recibe daño y pierde vida
 		currentHealth -= damage;
 		
+		//Si llega a cero su vida, se muere
 		if (currentHealth <= 0)
 		{
 			Die();
@@ -41,12 +43,14 @@ public partial class Enemy : CharacterBody2D
 	
 	private void Die()
 	{
+		//Se destruye y recompensa al jugador con una cantidad de dinero
 		moneyManager.AddMoney(Reward);
 		QueueFree();
 	}
 	
 	public void SetPath(List<Vector2I> tilePath, TileMap tileMap)
 	{
+		//Recorre el camino que esta en el mapa
 		worldPath = new List<Vector2>();
 		
 		foreach (var tile in tilePath)
@@ -62,6 +66,7 @@ public partial class Enemy : CharacterBody2D
 	{
 		if (worldPath == null) return;
 		
+		//Si llega al final, el juego termina
 		if (index >= worldPath.Count)
 		{
 			game.GameOver();

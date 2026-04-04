@@ -18,6 +18,7 @@ public partial class EnemySpawner : Node2D
 		mapManager = game.GetNode<MapManager>("MapManager");
 		tileMap = game.GetNode<TileMap>("TileMap");
 		
+		//Enemigos disposibles
 		enemyScenes = new Dictionary<EnemyType, PackedScene>()
 		{
 			{EnemyType.Normal, EnemyScene}
@@ -29,12 +30,15 @@ public partial class EnemySpawner : Node2D
 		if (!enemyScenes.ContainsKey(type)) return;
 		PackedScene sceneToSpawn = enemyScenes[type];
 		
+		//Instancia enemigo
 		var enemy = sceneToSpawn.Instantiate<Enemy>();
 		
 		var path = mapManager.GetPath();
 		
+		//Le dice el camino a seguir al enemigo
 		enemy.SetPath(path, tileMap);
 		
+		//Lo coloca en el mapa
 		AddChild(enemy);
 	}
 }

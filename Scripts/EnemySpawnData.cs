@@ -8,6 +8,7 @@ public partial class EnemySpawnData
 	
 	public EnemySpawnData(EnemyType type, int count)
 	{
+		//Tipo de enemigos y su cantidad
 		this.type = type;
 		this.count = count;
 	}

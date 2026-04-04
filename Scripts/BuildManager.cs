@@ -26,6 +26,7 @@ public partial class BuildManager : Node
 		game = parent.GetNode<Game>(".");
 		moneyManager = parent.GetNode<MoneyManager>("MoneyManager");
 		
+		//Añade a un diccionario las torres dispoibles
 		towerScenes = new Dictionary<TowerType, PackedScene>()
 		{
 			{TowerType.Fast, FastTowerScene},
@@ -38,8 +39,10 @@ public partial class BuildManager : Node
 	{
 		if (GetViewport().GuiGetHoveredControl() != null) return;
 		
+		//Cuando el jugador hace click
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
 		{
+			//Obtine la ubicación del tile presionado
 			Vector2 localPos = tileMap.ToLocal(mouseEvent.Position);
 			Vector2I tilePos = tileMap.LocalToMap(localPos);
 			
@@ -48,19 +51,23 @@ public partial class BuildManager : Node
 			
 			if (mapManager.CanBuild(x,y))
 			{
+				//Intancia la torre seleccionda
 				if (!towerScenes.ContainsKey(selectedTower.Value)) return;
 				PackedScene sceneToSpawn = towerScenes[selectedTower.Value];
 				
 				Tower towerInstance = sceneToSpawn.Instantiate<Tower>();
 				int cost = towerInstance.Cost;
 				
+				//Gasta el dinero que gastó en la torre
 				if (!moneyManager.SpendMoney(cost)) return;
 				
 				Vector2 worldPos = tileMap.MapToLocal(tilePos);
 				towerInstance.Position = worldPos;
 				
+				//coloca la torre
 				GetParent().AddChild(towerInstance);
 				
+				//Ocupa la casilla
 				mapManager.SetOcuppied(x,y);
 			}
 		}
@@ -68,6 +75,7 @@ public partial class BuildManager : Node
 	
 	public void SetTower(TowerType type)
 	{
+		//La torre seleccionada
 		selectedTower = type;
 	}
 }

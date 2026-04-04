@@ -9,6 +9,7 @@ public class Wave
 	
 	public Wave(List<EnemySpawnData> enemies, float delay)
 	{
+		//Constructor de oleada, con los enemigos y el tiempo entre uno y otro
 		this.enemies = enemies;
 		this.spawnDelay = delay;
 	}

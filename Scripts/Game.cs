@@ -16,6 +16,7 @@ public partial class Game : Node2D
 	
 	public void GameOver()
 	{
+		//Pausa el juego y muestra pantalla de GameOver
 		GetTree().Paused = true;
 		uiManager.ShowGameOver();
 	}
