@@ -11,6 +11,7 @@ public partial class BuildManager : Node
 	private TileMap tileMap;
 	private MapManager mapManager;
 	private Game game;
+	private MoneyManager moneyManager;
 	
 	public enum TowerType {Fast, Normal, Heavy}
 	
@@ -25,6 +26,7 @@ public partial class BuildManager : Node
 		tileMap = parent.GetNode<TileMap>("TileMap");
 		mapManager = parent.GetNode<MapManager>("MapManager");
 		game = parent.GetNode<Game>(".");
+		moneyManager = parent.GetNode<MoneyManager>("MoneyManager");
 		
 		towerScenes = new Dictionary<TowerType, PackedScene>()
 		{
@@ -51,15 +53,17 @@ public partial class BuildManager : Node
 			if (mapManager.CanBuild(x,y))
 			{
 				if (!towerScenes.ContainsKey(selectedTower)) return;
-				
 				PackedScene sceneToSpawn = towerScenes[selectedTower];
 				
-				Node2D tower = sceneToSpawn.Instantiate<Node2D>();
+				Tower towerInstance = sceneToSpawn.Instantiate<Tower>();
+				int cost = towerInstance.Cost;
+				
+				if (!moneyManager.SpendMoney(cost)) return;
 				
 				Vector2 worldPos = tileMap.MapToLocal(tilePos);
-				tower.Position = worldPos;
+				towerInstance.Position = worldPos;
 				
-				GetParent().AddChild(tower);
+				GetParent().AddChild(towerInstance);
 				
 				mapManager.SetOcuppied(x,y);
 			}

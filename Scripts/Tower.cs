@@ -6,6 +6,7 @@ public partial class Tower : Node2D
 {
 	[Export] public PackedScene BulletScene;
 	[Export] public float Firerate = 2f;
+	[Export] public int Cost = 50;
 	
 	private List<Enemy> enemiesInRange = new List<Enemy>();
 	
@@ -28,11 +29,6 @@ public partial class Tower : Node2D
 	private void OnEnemyExited(Node body)
 	{
 		if (body is Enemy enemy) enemiesInRange.Remove(enemy);
-	}
-	
-	private void CleanEnemies()
-	{
-		
 	}
 	
 	private Enemy GetTarget()

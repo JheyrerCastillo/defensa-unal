@@ -5,8 +5,11 @@ using System.Collections.Generic;
 public partial class Enemy : CharacterBody2D
 {
 	[Export] public int MaxHealth = 3;
+	[Export] public int Reward = 10;
 	
 	private int currentHealth;
+	
+	private MoneyManager moneyManager;
 	
 	private List<Vector2> worldPath;
 	private int index = 0;
@@ -20,6 +23,7 @@ public partial class Enemy : CharacterBody2D
 	public override void _Ready()
 	{
 		currentHealth = MaxHealth;
+		moneyManager = GetTree().CurrentScene.GetNode<MoneyManager>("Game/MoneyManager");
 	}
 	
 	public void TakeDamage(int damage)
@@ -34,6 +38,7 @@ public partial class Enemy : CharacterBody2D
 	
 	private void Die()
 	{
+		moneyManager.AddMoney(Reward);
 		QueueFree();
 	}
 	

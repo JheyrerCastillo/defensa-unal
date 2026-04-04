@@ -10,6 +10,8 @@ radius = 16.002811
 [node name="HeavyTower" type="Node2D" unique_id=218678994]
 script = ExtResource("1_edpmq")
 BulletScene = ExtResource("2_eb34q")
+Firerate = 1.0
+Cost = 75
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=952304059]
 position = Vector2(0.5, 0)
