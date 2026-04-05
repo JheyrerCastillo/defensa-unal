@@ -6,16 +6,18 @@ public partial class Bullet : Area2D
 	[Export] public float Speed = 5000f; //Velocidad de la bala
 	[Export] public int Damage = 1; //Daño que hace la bala
 	
-	private Enemy target;
-	private Vector2 Targetdirection = Vector2.Zero;
+	private Enemy target; //Enemigo objetivo de la bala
+	private Vector2 Targetdirection = Vector2.Zero; //Dirección del objetivo
 	
 	public void SetTarget(Enemy enemy)
 	{
+		//Toma el enemigo del argumento como objetivo de la bala
 		target = enemy;
 	}
 
 	public void SetDirection(Vector2 Direction)
 	{
+		//Toma el vector del argumento como la dirección del objetivo
 		Targetdirection = Direction;
 	}
 	
@@ -51,6 +53,5 @@ public partial class Bullet : Area2D
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
-		
 	}
 }

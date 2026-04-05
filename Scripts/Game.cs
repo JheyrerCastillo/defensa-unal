@@ -3,12 +3,13 @@ using System;
 
 public partial class Game : Node2D
 {
-	private WaveManager waveManager;
-	private MoneyManager moneyManager;
-	private UIManager uiManager;
+	private WaveManager waveManager; //Nodo que maneja las oleadas
+	private MoneyManager moneyManager; //Nodo que maneja el dinero
+	private UIManager uiManager; //Nodo que maneja la interfaz de usuario
 	
 	public override void _Ready()
 	{
+		//Referencia de nodos necesarios
 		waveManager = GetNode<WaveManager>("WaveManager");
 		moneyManager = GetNode<MoneyManager>("MoneyManager");
 		uiManager = GetNode<UIManager>("../UI/UIManager");

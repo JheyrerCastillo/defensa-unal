@@ -3,12 +3,12 @@ using System;
 
 public partial class EnemySpawnData
 {
-	public EnemyType type;
-	public int count;
+	public EnemyType type; //Tipo de enemigo a spawnear
+	public int count; //Cantidad de enemigos a spawnear de un tipo
 	
+	//Constructor de datos del enemigo a spawnear
 	public EnemySpawnData(EnemyType type, int count)
 	{
-		//Tipo de enemigos y su cantidad
 		this.type = type;
 		this.count = count;
 	}

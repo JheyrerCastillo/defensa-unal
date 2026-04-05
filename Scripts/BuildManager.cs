@@ -4,21 +4,22 @@ using System.Collections.Generic;
 
 public partial class BuildManager : Node
 {
-	[Export] public PackedScene TowerScene;
-	[Export] public PackedScene FastTowerScene;
-	[Export] public PackedScene HeavyTowerScene;
+	[Export] public PackedScene TowerScene; //Exporta en el inspector la escena de la torre normal
+	[Export] public PackedScene FastTowerScene; //Exporta en el inspector la escena de la torre rapìda
+	[Export] public PackedScene HeavyTowerScene; //Exporta en el inspector la escena de la torre pesada
 	
-	private TileMap tileMap;
-	private MapManager mapManager;
-	private Game game;
-	private MoneyManager moneyManager;
+	private TileMap tileMap; //Mapa en el que construir
+	private MapManager mapManager; //Nodo que maneja mapas
+	private Game game; //Nodo que maneja el juego
+	private MoneyManager moneyManager; //Nodo que maneja el dinero
 	
-	private TowerType? selectedTower = null;
+	private TowerType? selectedTower = null; //Tipo de torre seleccionada iniciada sin valor
 	
-	private Dictionary<TowerType, PackedScene> towerScenes;
+	private Dictionary<TowerType, PackedScene> towerScenes; //Diccionario de escenas de las torres
 	
 	public override void _Ready()
 	{
+		//Referencia de nodos necesarios
 		var parent = GetParent();
 		
 		tileMap = parent.GetNode<TileMap>("TileMap");
@@ -37,6 +38,7 @@ public partial class BuildManager : Node
 	
 	public void HandleInput(InputEvent @event)
 	{
+		//Verifica que no se esté presionando sobre la interfaz
 		if (GetViewport().GuiGetHoveredControl() != null) return;
 		
 		//Cuando el jugador hace click
@@ -46,21 +48,23 @@ public partial class BuildManager : Node
 			Vector2 localPos = tileMap.ToLocal(mouseEvent.Position);
 			Vector2I tilePos = tileMap.LocalToMap(localPos);
 			
+			//Guarda las coordenadas del tile presionado
 			int x = tilePos.X;
 			int y = tilePos.Y;
 			
+			//Si se puede construir...
 			if (mapManager.CanBuild(x,y))
 			{
-				//Intancia la torre seleccionda
+				//Intancia la torre seleccionda y toma su costo
 				if (!towerScenes.ContainsKey(selectedTower.Value)) return;
 				PackedScene sceneToSpawn = towerScenes[selectedTower.Value];
-				
 				Tower towerInstance = sceneToSpawn.Instantiate<Tower>();
 				int cost = towerInstance.Cost;
 				
 				//Gasta el dinero que gastó en la torre
 				if (!moneyManager.SpendMoney(cost)) return;
 				
+				//Guarda la posición seleccionada
 				Vector2 worldPos = tileMap.MapToLocal(tilePos);
 				towerInstance.Position = worldPos;
 				
