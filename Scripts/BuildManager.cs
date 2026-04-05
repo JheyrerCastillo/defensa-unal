@@ -36,6 +36,12 @@ public partial class BuildManager : Node
 		};
 	}
 	
+	public PackedScene GetTowerScene(TowerType type)
+	{
+		if(!towerScenes.ContainsKey(type)) return null;
+		return towerScenes[type];
+	}
+	
 	public void HandleInput(InputEvent @event)
 	{
 		//Verifica que no se esté presionando sobre la interfaz

@@ -1,3 +1,4 @@
+//Tipos de torres
 public enum TowerType
 {
 	Normal,

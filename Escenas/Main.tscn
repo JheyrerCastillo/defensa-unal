@@ -5304,9 +5304,6 @@ script = ExtResource("18_mtiip")
 panelMenu = NodePath("../Panel")
 toggleButton = NodePath("../TogglePanelButton")
 gameOverPanel = NodePath("../GameOverPanel")
-TowerScene = ExtResource("2_a5a2i")
-FastTowerScene = ExtResource("3_t36bp")
-HeavyTowerScene = ExtResource("4_i2xo1")
 
 [node name="Panel" type="Panel" parent="UI" unique_id=1412329551]
 anchors_preset = 11

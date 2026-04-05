@@ -24,29 +24,32 @@ public partial class Tower : Node2D
 	
 	private void OnEnemyEntered(Node body)
 	{
+		//Si el cuerpo que entró en su rango es un enemigo, lo añade a la cola de enemigos en rango
 		if (body is Enemy enemy) enemiesInRange.Add(enemy);
 	}
 	
 	private void OnEnemyExited(Node body)
 	{
+		//Si el cuerpo que salió de su rango es un enemigo, lo elimina a la cola de enemigos en rango
 		if (body is Enemy enemy) enemiesInRange.Remove(enemy);
 	}
 	
 	private Enemy GetTarget()
 	{
+		//Elimina enemigos invalidos de la cola
 		enemiesInRange.RemoveAll(e => !IsInstanceValid(e));
 		
 		//Si no hay enemigos en rango, no apunta a nada
 		if (enemiesInRange.Count == 0) return null;
 		
+		//Cola con prioridad con los enemigos con más vida que esten en rango
 		var pq = new PriorityQueue<Enemy,int>();
-		
-		//cola con prioridad con los enemigos con más vida que esten en rango
 		foreach (var enemy in enemiesInRange)
 		{
 			pq.Enqueue(enemy, -enemy.GetHealth());
 		}
 		
+		//Retorna el enemigo con más vida
 		return pq.Dequeue();
 	}
 	
@@ -62,7 +65,7 @@ public partial class Tower : Node2D
 		var target = GetTarget();
 		if (target == null) return;
 		
-		//Apunta al objetivo
+		//Obtiene su dirección
 		Vector2 direction = GetDirectionTo(target);
 		
 		//Instacia una bala
@@ -81,10 +84,10 @@ public partial class Tower : Node2D
 		var target = GetTarget();
 		if (target == null) return;
 		
-		//Lo apunta y obtiene su dirección
+		//Obtiene su dirección
 		Vector2 direction = GetDirectionTo(target);
 		
-		//Rota de acuerdo a donde esta apuntando
+		//Rota de acuerdo a la dirección
 		Rotation = direction.Angle() + Mathf.Pi / 2;
 	}
 }
