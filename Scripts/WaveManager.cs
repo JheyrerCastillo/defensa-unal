@@ -9,6 +9,9 @@ public partial class WaveManager : Node
 	
 	private List<Wave> waves = new List<Wave>(); //Lista de oleadas
 	
+	public bool AllWavesFinished = false; //Verifica si las oleadas estaban finalizadas
+	private int aliveEnemies = 0; //Enemigos vivos
+	
 	public override async void _Ready()
 	{
 		CreateWaves(); //Crea las oleadas
@@ -41,7 +44,30 @@ public partial class WaveManager : Node
 			
 			//Espera un tiempo entre oleada
 			await ToSignal(GetTree().CreateTimer(2f), "timeout");
+			
+			//Oleadas terminadas
+			AllWavesFinished = true;
 		}
+	}
+	
+	public void RegisterEnemySpawn()
+	{
+		aliveEnemies++;
+	}
+	
+	public void RegisterEnemyDeath()
+	{
+		aliveEnemies--;
+		CheckWinConditions();
+	}
+	
+	public void CheckWinConditions()
+	{
+		//Se verifiva que hayan terminado las oleadas
+		if (!AllWavesFinished) return;
+		
+		//Si ya no hay más enemigos, ganas
+		if (aliveEnemies <= 0) GetParent<Game>().Win();
 	}
 	
 	//Define las oleadas del juego

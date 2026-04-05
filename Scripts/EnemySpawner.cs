@@ -8,6 +8,7 @@ public partial class EnemySpawner : Node2D
 	
 	private MapManager mapManager; //Nodo que maneja mapas
 	private TileMap tileMap; //Mapa en el que spawnear enemigos
+	private WaveManager waveManager; //Nodo que maneja las oleadas
 	
 	private Dictionary<EnemyType, PackedScene> enemyScenes; //Diccionario de escenas de los enemigos
 	
@@ -17,6 +18,7 @@ public partial class EnemySpawner : Node2D
 		var game = GetParent();
 		mapManager = game.GetNode<MapManager>("MapManager");
 		tileMap = game.GetNode<TileMap>("TileMap");
+		waveManager = game.GetNode<WaveManager>("WaveManager");
 		
 		//Enemigos disponibles
 		enemyScenes = new Dictionary<EnemyType, PackedScene>()
@@ -40,5 +42,8 @@ public partial class EnemySpawner : Node2D
 		
 		//Lo coloca en el mapa
 		AddChild(enemy);
+		
+		//Registra el spawn del enemigo
+		waveManager.RegisterEnemySpawn();
 	}
 }

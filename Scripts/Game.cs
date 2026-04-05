@@ -21,4 +21,11 @@ public partial class Game : Node2D
 		GetTree().Paused = true;
 		uiManager.ShowGameOver();
 	}
+	
+	public void Win()
+	{
+		//Pausa el juego y muestra la pantalla de victoria
+		GetTree().Paused = true;
+		uiManager.ShowWin();
+	}
 }

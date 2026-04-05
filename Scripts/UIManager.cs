@@ -6,6 +6,7 @@ public partial class UIManager : Node
 	[Export] private Control panelMenu; //Exporta em el inspector el panel de torres
 	[Export] private Button toggleButton; //Exporta en el inspector el botón para abrir el panel
 	[Export] private Control gameOverPanel; //Exporta en el inspector el panel de game over
+	[Export] private Control winPanel; //Exporta en el inspector el panel de victoria¡
 	
 	private Button fastTowerButton; //Botón para la torre rapida
 	private Button normalTowerButton; //Botón para la torre normal
@@ -43,6 +44,19 @@ public partial class UIManager : Node
 		
 		//Pone el precio en los botones
 		UpdateTowerButtons();
+	}
+	
+	public void ShowWin()
+	{
+		//Muestra la pantalla de victoria
+		winPanel.Visible = true;
+	}
+	
+	public void MenuButtonPressed()
+	{
+		//Cambia a la escena del menú
+		GetTree().Paused = false;
+		GetTree().ChangeSceneToFile("res://Escenas/MainMenu.tscn");
 	}
 	
 	public void ShowGameOver()
