@@ -5,14 +5,14 @@ using System.Collections.Generic;
 public partial class Tower : Node2D
 {
 	[Export] public PackedScene BulletScene; //Munición que usara la torre
-	[Export] public float Firerate = 2f; //Variable que determina cadencia de tiro
+	[Export] public float Firerate = 1f; //Variable que determina cadencia de tiro
 	[Export] public int Cost = 50;  //Costo de la torre
 	
 	private List<Enemy> enemiesInRange = new List<Enemy>(); //Lista de enemigos que estan en rango
 	
 	public override void _Ready()
 	{
-		//Añade o quita un enemgio que haya entrado en el rango de tiro
+		//Añade o quita un enemigo que haya entrado en el rango de tiro
 		var area = GetNode<Area2D>("Area2D");
 		area.BodyEntered += OnEnemyEntered;
 		area.BodyExited += OnEnemyExited;
@@ -58,6 +58,11 @@ public partial class Tower : Node2D
 		//La torre obtiene la dirección donde esta el enemigo
 		return (target.GlobalPosition - GlobalPosition).Normalized();
 	}
+
+	protected virtual void PlayAnimationShoot()
+	{
+		
+	}
 	
 	private void OnShoot()
 	{
@@ -88,6 +93,16 @@ public partial class Tower : Node2D
 		Vector2 direction = GetDirectionTo(target);
 		
 		//Rota de acuerdo a la dirección
-		Rotation = direction.Angle() + Mathf.Pi / 2;
+		double angulo = Math.Atan2(direction.X, direction.Y) * 180 / Math.PI - 90;
+		Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
+		if (angulo <= -90 || angulo > 90)
+		{
+			sprite.FlipH = true;
+		}
+		else
+		{
+			sprite.FlipH = false;
+		} 
+		// Rotation = direction.Angle() + Mathf.Pi / 2;
 	}
 }
