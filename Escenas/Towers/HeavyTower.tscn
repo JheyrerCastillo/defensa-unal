@@ -1,28 +1,27 @@
 [gd_scene format=3 uid="uid://hf6alo7ujmd"]
 
 [ext_resource type="Script" uid="uid://bksnf16ed68n3" path="res://Scripts/HeavyTower.cs" id="1_edpmq"]
-[ext_resource type="Texture2D" uid="uid://hw14832v4ush" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile292.png" id="2_cn5xm"]
 [ext_resource type="PackedScene" uid="uid://bm42jhl7o2tjh" path="res://Escenas/Bullets/Bullet.tscn" id="2_eb34q"]
+[ext_resource type="Texture2D" uid="uid://6cscx81ypkch" path="res://Assets Propios/Quimico-removebg-preview.png" id="3_h7ntm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usulm"]
 radius = 16.002811
 
 [node name="HeavyTower" type="Node2D" unique_id=218678994]
+scale = Vector2(0.16, 0.16)
 script = ExtResource("1_edpmq")
 BulletScene = ExtResource("2_eb34q")
-Firerate = 1.0
-Cost = 75
+Cost = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=952304059]
 position = Vector2(0.5, 0)
-rotation = -1.540146
-scale = Vector2(1.015625, 1)
-texture = ExtResource("2_cn5xm")
+scale = Vector2(1, 0.862)
+texture = ExtResource("3_h7ntm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1715915350]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=20344768]
-scale = Vector2(20, 20)
+scale = Vector2(60, 60)
 shape = SubResource("CircleShape2D_usulm")
 
 [node name="Timer" type="Timer" parent="." unique_id=162075580]

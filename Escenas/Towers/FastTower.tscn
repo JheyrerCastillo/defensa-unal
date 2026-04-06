@@ -14,7 +14,6 @@ Firerate = 4.0
 Cost = 75
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=952304059]
-rotation = -1.5780954
 texture = ExtResource("3_eb34q")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1715915350]

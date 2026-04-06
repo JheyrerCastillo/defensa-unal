@@ -1,15 +1,22 @@
 [gd_scene format=3 uid="uid://ctty1eaflyw6s"]
 
 [ext_resource type="Script" uid="uid://dljaubp3a2m0v" path="res://Scripts/Enemy.cs" id="1_s7bn3"]
-[ext_resource type="Texture2D" uid="uid://dg6nsmn4uovtg" path="res://Assets/riotPolice.png" id="2_lgqe2"]
+[ext_resource type="Texture2D" uid="uid://rg6q31000yux" path="res://Assets Propios/Enemigos/Riot3.png" id="2_qeshu"]
+[ext_resource type="Texture2D" uid="uid://dblvtb5l5s5kr" path="res://Assets Propios/Enemigos/Riot2.png" id="2_wx4f4"]
+[ext_resource type="Texture2D" uid="uid://dxmgsp1qucstr" path="res://Assets Propios/Enemigos/Riot1.png" id="4_aqiqn"]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=796098660]
 script = ExtResource("1_s7bn3")
+SpriteUp = ExtResource("2_wx4f4")
+SpriteLeft = ExtResource("2_qeshu")
+SpriteDown = ExtResource("4_aqiqn")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=741814268]
-texture = ExtResource("2_lgqe2")
+[node name="Derecha" type="Sprite2D" parent="." unique_id=741814268]
+position = Vector2(0, 0.5)
+scale = Vector2(0.8, 0.787)
+texture = ExtResource("2_qeshu")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1976604252]
 position = Vector2(-0.9999981, -1)
 scale = Vector2(1.3728448, 1.1449468)
-polygon = PackedVector2Array(-4, -22, -12, -9, -15, 24, 11, 23, 14, -23)
+polygon = PackedVector2Array(-1.3709068e-06, -27.948896, -10.1978035, -20.088268, -17.481947, 0.873403, -14.56829, 29.695704, 13.111458, 27.948896, 17.481945, 0.873403, 9.469385, -5.240418, 10.926214, -14.847852, 8.012557, -25.328688)

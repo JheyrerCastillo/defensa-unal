@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bm42jhl7o2tjh"]
 
 [ext_resource type="Script" uid="uid://bterro5ux628f" path="res://Scripts/Bullet.cs" id="1_5q0pg"]
-[ext_resource type="Texture2D" uid="uid://cb4wm155jcl4k" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile275.png" id="2_lvksi"]
+[ext_resource type="Texture2D" uid="uid://7yhxp6ui6qlg" path="res://Assets Propios/Cerebro.webp" id="2_5nlqj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_np30r"]
 radius = 9.0
@@ -11,7 +11,8 @@ script = ExtResource("1_5q0pg")
 Speed = 300.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1205256969]
-texture = ExtResource("2_lvksi")
+scale = Vector2(0.038887076, 0.04991202)
+texture = ExtResource("2_5nlqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1957641022]
 shape = SubResource("CircleShape2D_np30r")
