@@ -1,7 +1,4 @@
-using Godot;
-using System;
-
-public partial class EnemySpawnData
+public class EnemySpawnData
 {
 	public EnemyType type; //Tipo de enemigo a spawnear
 	public int count; //Cantidad de enemigos a spawnear de un tipo

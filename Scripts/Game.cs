@@ -1,6 +1,4 @@
 using Godot;
-using System;
-
 public partial class Game : Node2D
 {
 	private WaveManager waveManager; //Nodo que maneja las oleadas

@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,8 +8,8 @@ public partial class WaveManager : Node
 	
 	private List<Wave> waves = new List<Wave>(); //Lista de oleadas
 
-	private bool AllWavesFinished = false; //Verifica si las oleadas estaban finalizadas
-	private int aliveEnemies = 0; //Enemigos vivos
+	private bool allWavesFinished; //Verifica si las oleadas estaban finalizadas
+	private int aliveEnemies; //Enemigos vivos
 	
 	public override async void _Ready()
 	{
@@ -29,7 +28,7 @@ public partial class WaveManager : Node
 			//Recorre los tipos de enemigos dentro de la oleada
 			foreach (var enemyData in wave.enemies)
 			{
-				//Spawnea la cantidad indicada de enmigos
+				//Spawnea la cantidad indicada de enemigos
 				for (int i = 0; i < enemyData.count; i++)
 				{
 					//Spawnea al enemigo
@@ -48,13 +47,13 @@ public partial class WaveManager : Node
 		}
 		
 		//Oleadas terminadas
-		AllWavesFinished = true;
+		allWavesFinished = true;
 		
 		//Verifica si ganaste
 		CheckWinConditions();
 	}
-	
-	public void RegisterEnemySpawn()
+
+	private void RegisterEnemySpawn()
 	{
 		aliveEnemies++;
 	}
@@ -64,11 +63,11 @@ public partial class WaveManager : Node
 		aliveEnemies--;
 		CheckWinConditions();
 	}
-	
-	public void CheckWinConditions()
+
+	private void CheckWinConditions()
 	{
 		//Se verifica que hayan terminado las oleadas
-		if (!AllWavesFinished) return;
+		if (!allWavesFinished) return;
 		
 		//Si ya no hay más enemigos, ganas
 		if (aliveEnemies == 0) GetParent<Game>().Win();

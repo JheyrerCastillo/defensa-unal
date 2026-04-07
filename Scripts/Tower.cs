@@ -8,7 +8,7 @@ public partial class Tower : Node2D
 	[Export] public float Firerate = 1f; //Variable que determina cadencia de tiro
 	[Export] public int Cost = 50;  //Costo de la torre
 	
-	private List<Enemy> enemiesInRange = new List<Enemy>(); //Lista de enemigos que estan en rango
+	private List<Enemy> enemiesInRange = new List<Enemy>(); //Lista de enemigos que están en rango
 	
 	public override void _Ready()
 	{

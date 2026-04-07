@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public partial class BuildManager : Node
 {
 	[Export] public PackedScene TowerScene; //Exporta en el inspector la escena de la torre normal
-	[Export] public PackedScene FastTowerScene; //Exporta en el inspector la escena de la torre rapìda
+	[Export] public PackedScene FastTowerScene; //Exporta en el inspector la escena de la torre rápida
 	[Export] public PackedScene HeavyTowerScene; //Exporta en el inspector la escena de la torre pesada
 	
 	private TileMap tileMap; //Mapa en el que construir
@@ -37,8 +37,7 @@ public partial class BuildManager : Node
 	
 	public PackedScene GetTowerScene(TowerType type)
 	{
-		if(!towerScenes.ContainsKey(type)) return null;
-		return towerScenes[type];
+		return towerScenes.GetValueOrDefault(type);
 	}
 	
 	public void HandleInput(InputEvent @event)
@@ -46,8 +45,8 @@ public partial class BuildManager : Node
 		//Verifica que no se esté presionando sobre la interfaz
 		if (GetViewport().GuiGetHoveredControl() != null) return;
 		
-		//Cuando el jugador hace click
-		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
+		//Cuando el jugador hace clic
+		if (@event is InputEventMouseButton { Pressed: true } mouseEvent)
 		{
 			//Obtine la ubicación del tile presionado
 			Vector2 localPos = tileMap.ToLocal(mouseEvent.Position);
@@ -61,8 +60,7 @@ public partial class BuildManager : Node
 			if (mapManager.CanBuild(x,y))
 			{
 				//Intancia la torre seleccionda y toma su costo
-				if (!towerScenes.ContainsKey(selectedTower.Value)) return;
-				PackedScene sceneToSpawn = towerScenes[selectedTower.Value];
+				if (!towerScenes.TryGetValue(selectedTower.Value, out var sceneToSpawn)) return;
 				Tower towerInstance = sceneToSpawn.Instantiate<Tower>();
 				int cost = towerInstance.Cost;
 				

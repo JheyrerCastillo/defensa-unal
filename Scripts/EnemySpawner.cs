@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class EnemySpawner : Node2D
@@ -34,9 +33,8 @@ public partial class EnemySpawner : Node2D
 	
 	public void SpawnEnemy(EnemyType type)
 	{
-		//Instancia enemigo
-		if (!enemyScenes.ContainsKey(type)) return;
-		PackedScene sceneToSpawn = enemyScenes[type];
+		//Instancia un enemigo
+		if (!enemyScenes.TryGetValue(type, out var sceneToSpawn)) return;
 		var enemy = sceneToSpawn.Instantiate<Enemy>();
 		
 		//Camino por el que irá el enemigo

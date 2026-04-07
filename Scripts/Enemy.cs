@@ -19,7 +19,7 @@ public partial class Enemy : CharacterBody2D
 	private WaveManager waveManager; //Nodo que maneja las oleadas
 	
 	private List<Vector2> worldPath; //Lista de vectores del camino del enemigo
-	private int index = 0; //Índice que indica hacia donde se mueve el enemigo
+	private int index; //Índice que indica hacia donde se mueve el enemigo
 	protected float speed = 100f; //Velocidad del enemigo
 	
 	//Toma la vida actual del enemigo para otros scripts
@@ -73,7 +73,7 @@ public partial class Enemy : CharacterBody2D
 			worldPath.Add(tileMap.ToGlobal(tileMap.MapToLocal(tile)));
 		}
 		
-		//Pone al enemigo en el inicio del camino y se moverá hacia el tile en el indice 1
+		//Pone al enemigo en el inicio del camino y se moverá hacia el tile en el índice 1
 		Position = worldPath[0];
 		index = 1;
 	}
@@ -90,14 +90,14 @@ public partial class Enemy : CharacterBody2D
 			return;
 		}
 		
-		//Guarda el tile que corresponde al indice como el objetivo del enemigo
+		//Guarda el tile que corresponde al índice como el objetivo del enemigo
 		Vector2 target = worldPath[index];
 		
 		//Guarda la dirección hacia la que irá el enemigo
 		Vector2 direction = (target - Position).Normalized();
 		double angulo = Math.Atan2(direction.Y, direction.X) *180 / Math.PI;
-		// Ve a que dirrección se mueve el enmigo y cambia el sprite
-		if (angulo < -60 && angulo > -150)
+		// Ve a qué dirección se mueve el enemigo y cambia el sprite
+		if (angulo is < -60 and > -150)
 		{
 			sprite.Texture = SpriteUp;
 		}
