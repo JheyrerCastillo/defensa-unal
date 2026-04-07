@@ -14,11 +14,13 @@ config/name="DefensaUnal"
 config/description="Tower defense con tematica de la Universidad Nacional de Colombia"
 run/main_scene="uid://t75dml64lbf6"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://duitdfgsogj57"
 
 [display]
 
 window/size/viewport_height=640
+window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
