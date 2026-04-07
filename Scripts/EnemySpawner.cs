@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public partial class EnemySpawner : Node2D
 {
-	[Export] public PackedScene EnemyScene; //Exporta en el inspector la escena del enemigo
+	// Exporta en el inspector los enemigos
+	[Export] public PackedScene EnemyScene; 
+	[Export] public PackedScene Enemy2Scene; 
+	[Export] public PackedScene Enemy3Scene; 
 	
 	private MapManager mapManager; //Nodo que maneja mapas
 	private TileMap tileMap; //Mapa en el que spawnear enemigos
@@ -23,7 +26,7 @@ public partial class EnemySpawner : Node2D
 		//Enemigos disponibles
 		enemyScenes = new Dictionary<EnemyType, PackedScene>()
 		{
-			{EnemyType.Normal, EnemyScene}
+			{EnemyType.Normal, Enemy3Scene}
 		};
 	}
 	

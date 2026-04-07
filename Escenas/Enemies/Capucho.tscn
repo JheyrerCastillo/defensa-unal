@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cmp60mkguhgym"]
+
+[ext_resource type="Script" uid="uid://baeowsqrofkkv" path="res://Scripts/FastEnemy.cs" id="1_xtelt"]
+[ext_resource type="Texture2D" uid="uid://cw7owbytctfuw" path="res://Assets Propios/Enemigos/Molotov2.png" id="2_a200j"]
+[ext_resource type="Texture2D" uid="uid://b8fe5m5f0wp1p" path="res://Assets Propios/Enemigos/Molotov4.png" id="2_udj52"]
+[ext_resource type="Texture2D" uid="uid://doxp6oaw7nxs4" path="res://Assets Propios/Enemigos/Molotov3.png" id="4_vohi2"]
+
+[node name="FastEnemy" type="CharacterBody2D" unique_id=796098660]
+script = ExtResource("1_xtelt")
+SpriteUp = ExtResource("2_udj52")
+SpriteLeft = ExtResource("2_a200j")
+SpriteDown = ExtResource("4_vohi2")
+
+[node name="Derecha" type="Sprite2D" parent="." unique_id=741814268]
+position = Vector2(0, 0.5)
+scale = Vector2(0.8, 0.787)
+texture = ExtResource("2_a200j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1976604252]
+position = Vector2(-0.9999981, -1)
+scale = Vector2(1.3728448, 1.1449468)
+polygon = PackedVector2Array(-2.1852446, -24.455284, -10.1978035, -20.088268, -9.469389, 0, -8.01256, 23.581882, 11.654629, 22.708479, 10.1978, 0.873403, 9.469385, -5.240418, 8.012557, -13.101046, 5.0988994, -22.708477)

@@ -4,9 +4,13 @@ using System.Collections.Generic;
 
 public partial class Enemy : CharacterBody2D
 {
+	[Export] public Texture2D SpriteUp;
+	[Export] public Texture2D SpriteLeft;
+	[Export] public Texture2D SpriteDown;
 	[Export] public int MaxHealth = 3; //Vida total del enemigo
 	[Export] public int Reward = 10; //Dinero obtenido al matar el enemigo
-	
+
+	private Sprite2D sprite; // Creo la variable sprite para despues poder cambiarla
 	private int currentHealth; //Vida maxima del enemigo
 	
 	private Game game; //Nodo que maneja el juego
@@ -15,7 +19,7 @@ public partial class Enemy : CharacterBody2D
 	
 	private List<Vector2> worldPath; //Lista de vectores del camino del enemigo
 	private int index = 0; //Indice que indica hacia donde se mueve el enemigo
-	private float speed = 100f; //Velocidad del enemigo
+	protected float speed = 100f; //Velocidad del enemigo
 	
 	//Toma la vida actual del enemigo para otros scripts
 	public int GetHealth()
@@ -25,7 +29,8 @@ public partial class Enemy : CharacterBody2D
 	
 	public override void _Ready()
 	{
-		//Referencia de nodos necesarios
+		sprite = GetNode<Sprite2D>("Derecha");
+		sprite.Texture = SpriteUp;
 		game = GetTree().CurrentScene.GetNode<Game>("Game");
 		moneyManager = GetTree().CurrentScene.GetNode<MoneyManager>("Game/MoneyManager");
 		waveManager = GetTree().CurrentScene.GetNode<WaveManager>("Game/WaveManager");
@@ -86,6 +91,20 @@ public partial class Enemy : CharacterBody2D
 		
 		//Guarda la dirección hacia la que irá el enemigo
 		Vector2 direction = (target - Position).Normalized();
+		double angulo = Math.Atan2(direction.Y, direction.X) *180 / Math.PI;
+		// Ve a que dirrección se mueve el enmigo y cambia el sprite
+		if (angulo < -60 && angulo > -150)
+		{
+			sprite.Texture = SpriteUp;
+		}
+		else if (angulo <= -150 || angulo >= 150)
+		{
+			sprite.Texture = SpriteLeft;
+		}
+		else
+		{
+			sprite.Texture = SpriteDown;
+		}
 		
 		//Mueve al enemigo hacia el tile objetivo
 		Position = Position.MoveToward(target, speed * (float)delta);
