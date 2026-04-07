@@ -6,8 +6,8 @@ public partial class EnemySpawner : Node2D
 {
 	// Exporta en el inspector los enemigos
 	[Export] public PackedScene EnemyScene; 
-	[Export] public PackedScene Enemy2Scene; 
-	[Export] public PackedScene Enemy3Scene; 
+	[Export] public PackedScene HeavyEnemyScene; 
+	[Export] public PackedScene FastEnemyScene; 
 	
 	private MapManager mapManager; //Nodo que maneja mapas
 	private TileMap tileMap; //Mapa en el que spawnear enemigos
@@ -26,7 +26,9 @@ public partial class EnemySpawner : Node2D
 		//Enemigos disponibles
 		enemyScenes = new Dictionary<EnemyType, PackedScene>()
 		{
-			{EnemyType.Normal, Enemy3Scene}
+			{EnemyType.Normal, EnemyScene},
+			{EnemyType.Fast, FastEnemyScene},
+			{EnemyType.Heavy , HeavyEnemyScene}
 		};
 	}
 	
@@ -45,8 +47,5 @@ public partial class EnemySpawner : Node2D
 		
 		//Lo coloca en el mapa
 		AddChild(enemy);
-		
-		//Registra el spawn del enemigo
-		waveManager.RegisterEnemySpawn();
 	}
 }

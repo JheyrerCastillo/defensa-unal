@@ -18,11 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://cmp60mkguhgym" path="res://Escenas/Enemies/Capucho.tscn" id="11_m3363"]
 [ext_resource type="Texture2D" uid="uid://djami1vu28obm" path="res://Assets/kenney_tower-defense-top-down/edificiosInge.png" id="11_u12ih"]
 [ext_resource type="Texture2D" uid="uid://di6of1xyiycqy" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile291.png" id="16_fhaj2"]
-[ext_resource type="Texture2D" uid="uid://vqd2rpot2q0s" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile249.png" id="17_1wrdp"]
 [ext_resource type="Script" uid="uid://b4bdfkylrmhdg" path="res://Scripts/BuildManager.cs" id="17_dj7fj"]
 [ext_resource type="Script" uid="uid://diskkq5mdp5jp" path="res://Scripts/MoneyManager.cs" id="17_mtiip"]
-[ext_resource type="Texture2D" uid="uid://hw14832v4ush" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile292.png" id="18_dj7fj"]
 [ext_resource type="Script" uid="uid://d6e2brglqyja" path="res://Scripts/UIManager.cs" id="18_mtiip"]
+[ext_resource type="Texture2D" uid="uid://djewo6l3ad6ih" path="res://Assets Propios/Estudiante-removebg-preview.png" id="20_mtiip"]
+[ext_resource type="Texture2D" uid="uid://6cscx81ypkch" path="res://Assets Propios/Quimico-removebg-preview.png" id="21_gk8m0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trn2v"]
 resource_name = "Suelo"
@@ -5280,8 +5280,8 @@ script = ExtResource("10_fhaj2")
 [node name="EnemySpawner" type="Node2D" parent="Game" unique_id=1849700927]
 script = ExtResource("1_glv2v")
 EnemyScene = ExtResource("8_bgy44")
-Enemy2Scene = ExtResource("10_gk8m0")
-Enemy3Scene = ExtResource("11_m3363")
+HeavyEnemyScene = ExtResource("10_gk8m0")
+FastEnemyScene = ExtResource("11_m3363")
 
 [node name="TileMap2" type="TileMap" parent="Game" unique_id=686249231]
 tile_set = SubResource("TileSet_8fxbh")
@@ -5344,14 +5344,18 @@ text = "Fast"
 icon = ExtResource("16_fhaj2")
 
 [node name="NormalTowerButton" type="Button" parent="UI/Panel/MarginContainer/VBoxContainer" unique_id=69052755]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 text = "Normal"
-icon = ExtResource("17_1wrdp")
+icon = ExtResource("20_mtiip")
+expand_icon = true
 
 [node name="HeavyTowerButton" type="Button" parent="UI/Panel/MarginContainer/VBoxContainer" unique_id=1070450087]
+custom_minimum_size = Vector2(100, 90)
 layout_mode = 2
 text = "Heavy"
-icon = ExtResource("18_dj7fj")
+icon = ExtResource("21_gk8m0")
+expand_icon = true
 
 [node name="TogglePanelButton" type="Button" parent="UI" unique_id=755892706]
 anchors_preset = 1

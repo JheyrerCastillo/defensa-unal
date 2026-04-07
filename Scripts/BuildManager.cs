@@ -12,7 +12,7 @@ public partial class BuildManager : Node
 	private Game game; //Nodo que maneja el juego
 	private MoneyManager moneyManager; //Nodo que maneja el dinero
 	
-	private TowerType? selectedTower; //Tipo de torre seleccionada iniciada sin valor
+	private TowerType? selectedTower = null; //Tipo de torre seleccionada iniciada sin valor
 	
 	private Dictionary<TowerType, PackedScene> towerScenes; //Diccionario de escenas de las torres
 	

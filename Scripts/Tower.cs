@@ -43,10 +43,10 @@ public partial class Tower : Node2D
 		if (enemiesInRange.Count == 0) return null;
 		
 		//Cola con prioridad con los enemigos con más vida que esten en rango
-		var pq = new PriorityQueue<Enemy,int>();
+		var pq = new PriorityQueue<Enemy,float>();
 		foreach (var enemy in enemiesInRange)
 		{
-			pq.Enqueue(enemy, -enemy.GetHealth());
+			pq.Enqueue(enemy, -enemy.GetSpeed());
 		}
 		
 		//Retorna el enemigo con más vida

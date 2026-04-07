@@ -8,8 +8,8 @@ public partial class WaveManager : Node
 	[Export] public EnemySpawner Spawner; //Exporta en el inspector el spawner de enemigos
 	
 	private List<Wave> waves = new List<Wave>(); //Lista de oleadas
-	
-	public bool AllWavesFinished = false; //Verifica si las oleadas estaban finalizadas
+
+	private bool AllWavesFinished = false; //Verifica si las oleadas estaban finalizadas
 	private int aliveEnemies = 0; //Enemigos vivos
 	
 	public override async void _Ready()
@@ -17,17 +17,15 @@ public partial class WaveManager : Node
 		CreateWaves(); //Crea las oleadas
 		await RunWaves(); //Inicia la secuencia de oleadas
 	}
-	
-	public async Task RunWaves()
+
+	private async Task RunWaves()
 	{
 		//Tiempo antes de que empiecen las oleadas
 		await ToSignal(GetTree().CreateTimer(5f), "timeout");
 		
 		//Recorre todas las oleadas
-		for (int w = 0; w < waves.Count; w++)
+		foreach (Wave wave in waves)
 		{
-			Wave wave = waves[w];
-			
 			//Recorre los tipos de enemigos dentro de la oleada
 			foreach (var enemyData in wave.enemies)
 			{
@@ -37,17 +35,23 @@ public partial class WaveManager : Node
 					//Spawnea al enemigo
 					Spawner.SpawnEnemy(enemyData.type);
 					
+					//Añade un enemigo a la lista de enemigos vivos
+					RegisterEnemySpawn();
+					
 					//Espera un tiempo entre spawn
 					await ToSignal(GetTree().CreateTimer(wave.spawnDelay), "timeout");
 				}
 			}
 			
 			//Espera un tiempo entre oleada
-			await ToSignal(GetTree().CreateTimer(2f), "timeout");
-			
-			//Oleadas terminadas
-			AllWavesFinished = true;
+			await ToSignal(GetTree().CreateTimer(5f), "timeout");
 		}
+		
+		//Oleadas terminadas
+		AllWavesFinished = true;
+		
+		//Verifica si ganaste
+		CheckWinConditions();
 	}
 	
 	public void RegisterEnemySpawn()
@@ -63,11 +67,11 @@ public partial class WaveManager : Node
 	
 	public void CheckWinConditions()
 	{
-		//Se verifiva que hayan terminado las oleadas
+		//Se verifica que hayan terminado las oleadas
 		if (!AllWavesFinished) return;
 		
 		//Si ya no hay más enemigos, ganas
-		if (aliveEnemies <= 0) GetParent<Game>().Win();
+		if (aliveEnemies == 0) GetParent<Game>().Win();
 	}
 	
 	//Define las oleadas del juego
@@ -81,12 +85,41 @@ public partial class WaveManager : Node
 		//Oleada 2
 		waves.Add(new Wave(new List<EnemySpawnData>
 		{
-			new EnemySpawnData(EnemyType.Normal, 15)
-		}, 0.75f));
+			new EnemySpawnData(EnemyType.Normal, 15),
+			new EnemySpawnData(EnemyType.Fast, 2)
+		}, 0.80f));
 		//Oleada 3
 		waves.Add(new Wave(new List<EnemySpawnData>
 		{
-			new EnemySpawnData(EnemyType.Normal, 30)
-		}, 0.5f));
+			new EnemySpawnData(EnemyType.Normal, 10),
+			new EnemySpawnData(EnemyType.Fast, 2),
+			new EnemySpawnData(EnemyType.Heavy, 1),
+			new EnemySpawnData(EnemyType.Normal, 10),
+			new EnemySpawnData(EnemyType.Fast, 2),
+			new EnemySpawnData(EnemyType.Heavy, 1),
+			new EnemySpawnData(EnemyType.Normal, 10),
+		}, 0.65f));
+		//Oleada 4
+		waves.Add(new Wave(new List<EnemySpawnData>
+		{
+			new EnemySpawnData(EnemyType.Fast, 5),
+			new EnemySpawnData(EnemyType.Normal, 2),
+			new EnemySpawnData(EnemyType.Normal, 3),
+			new EnemySpawnData(EnemyType.Fast, 5),
+			new EnemySpawnData(EnemyType.Normal, 3),
+			new EnemySpawnData(EnemyType.Heavy, 2)
+		},0.50f));
+		//Oleada 5
+		waves.Add(new Wave(new List<EnemySpawnData>
+		{
+			new EnemySpawnData(EnemyType.Fast, 5),
+			new EnemySpawnData(EnemyType.Heavy, 2),
+			new EnemySpawnData(EnemyType.Fast, 5),
+			new EnemySpawnData(EnemyType.Heavy, 2),
+			new EnemySpawnData(EnemyType.Fast, 5),
+			new EnemySpawnData(EnemyType.Heavy, 2),
+			new EnemySpawnData(EnemyType.Fast, 5),
+			new EnemySpawnData(EnemyType.Heavy, 2)
+		},0.4f));
 	}
 }

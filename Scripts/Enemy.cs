@@ -10,21 +10,22 @@ public partial class Enemy : CharacterBody2D
 	[Export] public int MaxHealth = 3; //Vida total del enemigo
 	[Export] public int Reward = 10; //Dinero obtenido al matar el enemigo
 
-	private Sprite2D sprite; // Creo la variable sprite para despues poder cambiarla
+	private Sprite2D sprite; // Creo la variable sprite para después poder cambiarla
 	private int currentHealth; //Vida maxima del enemigo
+	private bool isDead;
 	
 	private Game game; //Nodo que maneja el juego
 	private MoneyManager moneyManager; //Nodo que maneja el dinero
 	private WaveManager waveManager; //Nodo que maneja las oleadas
 	
 	private List<Vector2> worldPath; //Lista de vectores del camino del enemigo
-	private int index = 0; //Indice que indica hacia donde se mueve el enemigo
+	private int index = 0; //Índice que indica hacia donde se mueve el enemigo
 	protected float speed = 100f; //Velocidad del enemigo
 	
 	//Toma la vida actual del enemigo para otros scripts
-	public int GetHealth()
+	public float GetSpeed()
 	{
-		return currentHealth;
+		return speed;
 	}
 	
 	public override void _Ready()
@@ -40,6 +41,8 @@ public partial class Enemy : CharacterBody2D
 	
 	public void TakeDamage(int damage)
 	{
+		if (isDead) return;
+		
 		//recibe daño y pierde vida
 		currentHealth -= damage;
 		
@@ -52,6 +55,7 @@ public partial class Enemy : CharacterBody2D
 	
 	private void Die()
 	{
+		isDead = true;
 		//Se destruye y recompensa al jugador con una cantidad de dinero
 		moneyManager.AddMoney(Reward);
 		waveManager.RegisterEnemyDeath();
