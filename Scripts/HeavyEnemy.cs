@@ -1,4 +1,4 @@
-public partial class TankEnemy : Enemy
+public partial class HeavyEnemy : Enemy
 {
 	public override void _Ready()
 	{

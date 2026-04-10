@@ -13,7 +13,7 @@ config_version=5
 config/name="DefensaUnal"
 config/description="Tower defense con tematica de la Universidad Nacional de Colombia"
 run/main_scene="uid://t75dml64lbf6"
-config/features=PackedStringArray("4.6", "C#", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://duitdfgsogj57"
 
 [display]

@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bhfpg2cd27kww"]
 
-[ext_resource type="Script" uid="uid://cyx6v622qneka" path="res://Scripts/Enemy2.cs" id="1_0pwae"]
+[ext_resource type="Script" uid="uid://cyx6v622qneka" path="res://Scripts/HeavyEnemy.cs" id="1_0pwae"]
 [ext_resource type="Texture2D" uid="uid://2oh82ndyso7t" path="res://Assets Propios/Enemigos/RiotPolice4.png" id="2_0pwae"]
 [ext_resource type="Texture2D" uid="uid://dg7v3vxckda7i" path="res://Assets Propios/Enemigos/RiotPolice2.png" id="3_bbqar"]
 [ext_resource type="Texture2D" uid="uid://uemtxe3audi8" path="res://Assets Propios/Enemigos/RiotPolice3.png" id="4_bjvrr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0pwae"]
 
-[node name="Enemy2" type="CharacterBody2D" unique_id=796098660]
+[node name="HeavyEnemy" type="CharacterBody2D" unique_id=796098660]
 script = ExtResource("1_0pwae")
 SpriteUp = ExtResource("2_0pwae")
 SpriteLeft = ExtResource("3_bbqar")
