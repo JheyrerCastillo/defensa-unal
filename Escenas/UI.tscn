@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://cx5i4iwu80g1b"]
+
+[ext_resource type="Script" uid="uid://d6e2brglqyja" path="res://Scripts/UIManager.cs" id="1_j5fs4"]
+[ext_resource type="Texture2D" uid="uid://di6of1xyiycqy" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile291.png" id="2_ukrey"]
+[ext_resource type="Texture2D" uid="uid://djewo6l3ad6ih" path="res://Assets Propios/Estudiante-removebg-preview.png" id="3_s021a"]
+[ext_resource type="Texture2D" uid="uid://6cscx81ypkch" path="res://Assets Propios/Quimico-removebg-preview.png" id="4_gj2ju"]
+
+[node name="UI" type="CanvasLayer" unique_id=774785975]
+
+[node name="UIManager" type="Node" parent="." unique_id=1132230594 node_paths=PackedStringArray("panelMenu", "toggleButton", "gameOverPanel", "winPanel")]
+script = ExtResource("1_j5fs4")
+panelMenu = NodePath("../Panel")
+toggleButton = NodePath("../TogglePanelButton")
+gameOverPanel = NodePath("../GameOverPanel")
+winPanel = NodePath("../WinPanel")
+
+[node name="Panel" type="Panel" parent="." unique_id=1707801507]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 150.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=54628564]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=760717746]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=55202249]
+layout_mode = 2
+text = "Dinero: "
+
+[node name="FastTowerButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=792663254]
+layout_mode = 2
+text = "Fast"
+icon = ExtResource("2_ukrey")
+
+[node name="NormalTowerButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1930928276]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Normal"
+icon = ExtResource("3_s021a")
+expand_icon = true
+
+[node name="HeavyTowerButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=178310925]
+custom_minimum_size = Vector2(100, 90)
+layout_mode = 2
+text = "Heavy"
+icon = ExtResource("4_gj2ju")
+expand_icon = true
+
+[node name="TogglePanelButton" type="Button" parent="." unique_id=707996199]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "<"
+
+[node name="GameOverPanel" type="Panel" parent="." unique_id=468375428]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel" unique_id=802818829]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -29.0
+offset_right = 41.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="GameOverPanel/VBoxContainer" unique_id=127926757]
+layout_mode = 2
+theme_override_font_sizes/font_size = 102
+text = "GameOver"
+
+[node name="RestartButton" type="Button" parent="GameOverPanel/VBoxContainer" unique_id=1101304646]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reiniciar"
+
+[node name="MenuButton" type="Button" parent="GameOverPanel/VBoxContainer" unique_id=1831735468]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Menú"
+
+[node name="WinPanel" type="Panel" parent="." unique_id=1016801077]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinPanel" unique_id=1676295965]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -29.0
+offset_right = 41.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="WinLabel" type="Label" parent="WinPanel/VBoxContainer" unique_id=1850540121]
+layout_mode = 2
+theme_override_font_sizes/font_size = 102
+text = "You win"
+
+[node name="MenuButton" type="Button" parent="WinPanel/VBoxContainer" unique_id=1823828072]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Menú"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/FastTowerButton" to="UIManager" method="SelectedFastTower"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/NormalTowerButton" to="UIManager" method="SelectedNormalTower"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HeavyTowerButton" to="UIManager" method="SelectedHeavyTower"]
+[connection signal="pressed" from="TogglePanelButton" to="UIManager" method="TogglePanel"]
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/RestartButton" to="UIManager" method="RestartButton"]
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/MenuButton" to="UIManager" method="MenuButtonPressed"]
+[connection signal="pressed" from="WinPanel/VBoxContainer/MenuButton" to="UIManager" method="MenuButtonPressed"]
