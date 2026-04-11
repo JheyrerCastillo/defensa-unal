@@ -26,7 +26,7 @@ public partial class BuildManager : Node
 		game = parent.GetNode<Game>(".");
 		moneyManager = parent.GetNode<MoneyManager>("MoneyManager");
 		
-		//Añade a un diccionario las torres dispoibles
+		//Añade a un diccionario las torres disponibles
 		towerScenes = new Dictionary<TowerType, PackedScene>()
 		{
 			{TowerType.Fast, FastTowerScene},
@@ -48,7 +48,7 @@ public partial class BuildManager : Node
 		//Cuando el jugador hace clic
 		if (@event is InputEventMouseButton { Pressed: true } mouseEvent)
 		{
-			//Obtine la ubicación del tile presionado
+			//Obtiene la ubicación del tile presionado
 			Vector2 localPos = tileMap.ToLocal(mouseEvent.Position);
 			Vector2I tilePos = tileMap.LocalToMap(localPos);
 			
@@ -59,7 +59,7 @@ public partial class BuildManager : Node
 			//Si se puede construir...
 			if (mapManager.CanBuild(x,y))
 			{
-				//Intancia la torre seleccionda y toma su costo
+				//Instancia la torre seleccionada y toma su costo
 				if (!towerScenes.TryGetValue(selectedTower.Value, out var sceneToSpawn)) return;
 				Tower towerInstance = sceneToSpawn.Instantiate<Tower>();
 				int cost = towerInstance.Cost;

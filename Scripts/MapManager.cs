@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class MapManager : Node
@@ -28,7 +27,7 @@ public partial class MapManager : Node
 		int maxX = 0;
 		int maxY = 0;
 		
-		//Aunmenta los limites del mapa si se usa una celda con mayor limite x o mayor limite y
+		//Aumenta los límites del mapa si se usa una celda con mayor límite x o mayor límite y
 		foreach (var cell in usedCells)
 		{
 			if (cell.X > maxX) maxX = cell.X;
@@ -93,7 +92,7 @@ public partial class MapManager : Node
 	
 	public List<Vector2I> GetPath()
 	{
-		//Obtiene la ubicacióm del inicio y del final
+		//Obtiene la ubicación del inicio y del final
 		Vector2I start = GetStart();
 		Vector2I end = GetEnd();
 		
@@ -108,7 +107,8 @@ public partial class MapManager : Node
 		cameFrom[start] = start;
 		
 		//Direcciones posibles
-		Vector2I[] directions = {
+		Vector2I[] directions =
+		[
 			new Vector2I(1,0),
 			new Vector2I(-1,0),
 			new Vector2I(0,1),
@@ -117,7 +117,7 @@ public partial class MapManager : Node
 			new Vector2I(-1,1),
 			new Vector2I(1,-1),
 			new Vector2I(-1,-1)
-		};
+		];
 		
 		//Mientras el camino sea mayor a 0
 		while (queue.Count > 0)
@@ -132,7 +132,7 @@ public partial class MapManager : Node
 				//Guarda el vector adyacente
 				Vector2I next = current + dir;
 				
-				//Verifica si está en el limite
+				//Verifica si está en el límite
 				if (!IsInside(next)) continue;
 				
 				//Verifica si se puede caminar por el vector adyacente
@@ -141,7 +141,7 @@ public partial class MapManager : Node
 				//Evita nodos en los que ya se estuvo
 				if (cameFrom.ContainsKey(next)) continue;
 				
-				//Atraviesa en diagonal solo si los tiles adyacentes al diagonal tambien son camino
+				//Atraviesa en diagonal solo si los tiles adyacentes al diagonal también son camino
 				if (dir.X != 0 && dir.Y != 0)
 				{
 					Vector2I side1 = new Vector2I(current.X + dir.X, current.Y);
@@ -184,8 +184,8 @@ public partial class MapManager : Node
 	
 	private bool IsInside(Vector2I pos)
 	{
-		//Esta dentro de los limites del mapa
-		return pos.X >= 0 && pos.Y >= 0 && pos.X < width && pos.Y < height;
+		//Está dentro de los límites del mapa
+		return pos is { X: >= 0, Y: >= 0 } && pos.X < width && pos.Y < height;
 	}
 	
 	private bool IsWalkable(Vector2I pos)

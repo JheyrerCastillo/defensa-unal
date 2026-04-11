@@ -20,12 +20,12 @@ public partial class Enemy : CharacterBody2D
 	
 	private List<Vector2> worldPath; //Lista de vectores del camino del enemigo
 	private int index; //Índice que indica hacia donde se mueve el enemigo
-	protected float speed = 100f; //Velocidad del enemigo
+	protected float Speed = 100f; //Velocidad del enemigo
 	
 	//Toma la vida actual del enemigo para otros scripts
 	public float GetSpeed()
 	{
-		return speed;
+		return Speed;
 	}
 	
 	public override void _Ready()
@@ -111,7 +111,7 @@ public partial class Enemy : CharacterBody2D
 		}
 		
 		//Mueve al enemigo hacia el tile objetivo
-		Position = Position.MoveToward(target, speed * (float)delta);
+		Position = Position.MoveToward(target, Speed * (float)delta);
 		
 		//Hace que el enemigo vaya hacia el siguiente tile en la lista
 		if (Position.DistanceTo(target) < 2f)

@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public partial class UIManager : Node
+public partial class UiManager : Node
 {
 	[Export] private Control panelMenu; //Exporta em el inspector el panel de torres
 	[Export] private Button toggleButton; //Exporta en el inspector el botón para abrir el panel
@@ -12,7 +11,7 @@ public partial class UIManager : Node
 	private Button normalTowerButton; //Botón para la torre normal
 	private Button heavyTowerButton; //Botón para la torre pesada
 	
-	private bool isPanelOpen = false; //Estado del panel (Abierto/Cerrado)
+	private bool isPanelOpen; //Estado del panel (Abierto/Cerrado)
 	private float closedX; //Posición del panel cerrado
 	private float openX; //Posición del panel abierto
 	
@@ -51,8 +50,8 @@ public partial class UIManager : Node
 		//Muestra la pantalla de victoria
 		winPanel.Visible = true;
 	}
-	
-	public void MenuButtonPressed()
+
+	private void MenuButtonPressed()
 	{
 		//Cambia a la escena del menú
 		GetTree().Paused = false;
@@ -113,8 +112,8 @@ public partial class UIManager : Node
 		moneyLabel.Text = "Dinero: $" + newAmount;
 		UpdateButtonState();
 	}
-	
-	public void TogglePanel()
+
+	private void TogglePanel()
 	{
 		//Abre o cierra el panel lateral
 		isPanelOpen = !isPanelOpen;
@@ -141,19 +140,19 @@ public partial class UIManager : Node
 	}
 	
 	//Selecciona la torre rapida
-	public void SelectedFastTower()
+	private void SelectedFastTower()
 	{
 		buildManager.SetTower(TowerType.Fast);
 	}
 	
 	//Selecciona la torre normal
-	public void SelectedNormalTower()
+	private void SelectedNormalTower()
 	{
 		buildManager.SetTower(TowerType.Normal);
 	}
 	
 	//Selecciona la torre pesada
-	public void SelectedHeavyTower()
+	private void SelectedHeavyTower()
 	{
 		buildManager.SetTower(TowerType.Heavy);
 	}

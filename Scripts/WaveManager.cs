@@ -6,7 +6,7 @@ public partial class WaveManager : Node
 {
 	[Export] public EnemySpawner Spawner; //Exporta en el inspector el spawner de enemigos
 	
-	private List<Wave> waves = new List<Wave>(); //Lista de oleadas
+	private readonly List<Wave> waves = new List<Wave>(); //Lista de oleadas
 
 	private bool allWavesFinished; //Verifica si las oleadas estaban finalizadas
 	private int aliveEnemies; //Enemigos vivos
@@ -26,19 +26,19 @@ public partial class WaveManager : Node
 		foreach (Wave wave in waves)
 		{
 			//Recorre los tipos de enemigos dentro de la oleada
-			foreach (var enemyData in wave.enemies)
+			foreach (var enemyData in wave.Enemies)
 			{
 				//Spawnea la cantidad indicada de enemigos
-				for (int i = 0; i < enemyData.count; i++)
+				for (int i = 0; i < enemyData.Count; i++)
 				{
 					//Spawnea al enemigo
-					Spawner.SpawnEnemy(enemyData.type);
+					Spawner.SpawnEnemy(enemyData.Type);
 					
 					//Añade un enemigo a la lista de enemigos vivos
 					RegisterEnemySpawn();
 					
 					//Espera un tiempo entre spawn
-					await ToSignal(GetTree().CreateTimer(wave.spawnDelay), "timeout");
+					await ToSignal(GetTree().CreateTimer(wave.SpawnDelay), "timeout");
 				}
 			}
 			
@@ -77,40 +77,33 @@ public partial class WaveManager : Node
 	private void CreateWaves()
 	{
 		//Oleada 1
-		waves.Add(new Wave(new List<EnemySpawnData>
-		{
-			new EnemySpawnData(EnemyType.Normal, 5)
-		}, 1.0f));
+		waves.Add(new Wave([new EnemySpawnData(EnemyType.Normal, 5)], 1.0f));
 		//Oleada 2
-		waves.Add(new Wave(new List<EnemySpawnData>
-		{
+		waves.Add(new Wave([
 			new EnemySpawnData(EnemyType.Normal, 15),
 			new EnemySpawnData(EnemyType.Fast, 2)
-		}, 0.80f));
+		], 0.80f));
 		//Oleada 3
-		waves.Add(new Wave(new List<EnemySpawnData>
-		{
+		waves.Add(new Wave([
 			new EnemySpawnData(EnemyType.Normal, 10),
 			new EnemySpawnData(EnemyType.Fast, 2),
 			new EnemySpawnData(EnemyType.Heavy, 1),
 			new EnemySpawnData(EnemyType.Normal, 10),
 			new EnemySpawnData(EnemyType.Fast, 2),
 			new EnemySpawnData(EnemyType.Heavy, 1),
-			new EnemySpawnData(EnemyType.Normal, 10),
-		}, 0.65f));
+			new EnemySpawnData(EnemyType.Normal, 10)
+		], 0.65f));
 		//Oleada 4
-		waves.Add(new Wave(new List<EnemySpawnData>
-		{
+		waves.Add(new Wave([
 			new EnemySpawnData(EnemyType.Fast, 5),
 			new EnemySpawnData(EnemyType.Normal, 2),
 			new EnemySpawnData(EnemyType.Normal, 3),
 			new EnemySpawnData(EnemyType.Fast, 5),
 			new EnemySpawnData(EnemyType.Normal, 3),
 			new EnemySpawnData(EnemyType.Heavy, 2)
-		},0.50f));
+		],0.50f));
 		//Oleada 5
-		waves.Add(new Wave(new List<EnemySpawnData>
-		{
+		waves.Add(new Wave([
 			new EnemySpawnData(EnemyType.Fast, 5),
 			new EnemySpawnData(EnemyType.Heavy, 2),
 			new EnemySpawnData(EnemyType.Fast, 5),
@@ -119,6 +112,6 @@ public partial class WaveManager : Node
 			new EnemySpawnData(EnemyType.Heavy, 2),
 			new EnemySpawnData(EnemyType.Fast, 5),
 			new EnemySpawnData(EnemyType.Heavy, 2)
-		},0.4f));
+		],0.4f));
 	}
 }

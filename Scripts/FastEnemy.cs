@@ -3,7 +3,7 @@ public partial class FastEnemy : Enemy
 {
     public override void _Ready()
     {
-        speed = 120f;
+        Speed = 120f;
         base._Ready();
     }
 }

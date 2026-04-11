@@ -1,6 +1,4 @@
 using Godot;
-using System;
-
 public partial class MoneyManager : Node
 {
 	private int currentMoney = 100; //Dinero que se tiene

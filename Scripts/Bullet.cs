@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Bullet : Area2D
 {
@@ -7,7 +6,7 @@ public partial class Bullet : Area2D
 	[Export] public int Damage = 1; //Daño que hace la bala
 	
 	private Enemy target; //Enemigo objetivo de la bala
-	private Vector2 Targetdirection = Vector2.Zero; //Dirección del objetivo
+	private Vector2 targetDirection = Vector2.Zero; //Dirección del objetivo
 	
 	public void SetTarget(Enemy enemy)
 	{
@@ -15,10 +14,10 @@ public partial class Bullet : Area2D
 		target = enemy;
 	}
 
-	public void SetDirection(Vector2 Direction)
+	public void SetDirection(Vector2 direction)
 	{
 		//Toma el vector del argumento como la dirección del objetivo
-		Targetdirection = Direction;
+		targetDirection = direction;
 	}
 	
 	public override void _Process(double delta)
@@ -31,13 +30,13 @@ public partial class Bullet : Area2D
 		}
 		
 		/* Esto era para que la bala fuera un proyectil
-		   lo que esta ya obsoleto
+		   lo que está ya obsoleto
 		   Vector2 direction = (target.GlobalPosition - GlobalPosition).Normalized(); */
 		
 		//Se dirige a la posición que le indicó la torre
-		GlobalPosition += Targetdirection * Speed * (float)delta;
+		GlobalPosition += targetDirection * Speed * (float)delta;
 		
-		// Complemento de protectiles: Rotation = direction.Angle();
+		// Complemento de proyectiles: Rotation = direction.Angle();
 	}
 	
 	private void OnBodyEntered(Node body)

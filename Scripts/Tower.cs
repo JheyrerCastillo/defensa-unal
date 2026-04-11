@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public partial class Tower : Node2D
 {
 	[Export] public PackedScene BulletScene; //Munición que usara la torre
-	[Export] public float Firerate = 1f; //Variable que determina cadencia de tiro
+	[Export] public float FireRate = 1f; //Variable que determina cadencia de tiro
 	[Export] public int Cost = 50;  //Costo de la torre
 	
-	private List<Enemy> enemiesInRange = new List<Enemy>(); //Lista de enemigos que están en rango
+	private readonly List<Enemy> enemiesInRange = new List<Enemy>(); //Lista de enemigos que están en rango
 	
 	public override void _Ready()
 	{
@@ -18,7 +18,7 @@ public partial class Tower : Node2D
 		area.BodyExited += OnEnemyExited;
 		
 		var timer = GetNode<Timer>("Timer");
-		timer.WaitTime = 1f/Firerate; // para que exista una cadencia de disparo
+		timer.WaitTime = 1f/FireRate; // para que exista una cadencia de disparo
 		timer.Timeout += OnShoot;
 	}
 	
@@ -66,14 +66,14 @@ public partial class Tower : Node2D
 	
 	private void OnShoot()
 	{
-		//Identific al objetivo
+		//Identifica al objetivo
 		var target = GetTarget();
 		if (target == null) return;
 		
 		//Obtiene su dirección
 		Vector2 direction = GetDirectionTo(target);
 		
-		//Instacia una bala
+		//Instancia una bala
 		var bullet = BulletScene.Instantiate<Bullet>();
 		GetTree().CurrentScene.AddChild(bullet);
 		
