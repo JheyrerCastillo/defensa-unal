@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class UiManager : Node
+public partial class UIManager : Node
 {
 	[Export] private Control panelMenu; //Exporta em el inspector el panel de torres
 	[Export] private Button toggleButton; //Exporta en el inspector el botón para abrir el panel
