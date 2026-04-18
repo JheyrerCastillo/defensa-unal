@@ -10,6 +10,7 @@ script = ExtResource("1_xtelt")
 SpriteUp = ExtResource("2_udj52")
 SpriteLeft = ExtResource("2_a200j")
 SpriteDown = ExtResource("4_vohi2")
+Reward = 7
 
 [node name="Derecha" type="Sprite2D" parent="." unique_id=741814268]
 position = Vector2(0, 0.5)

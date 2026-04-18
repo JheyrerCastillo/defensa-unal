@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cx5i4iwu80g1b"]
 
 [ext_resource type="Script" uid="uid://d6e2brglqyja" path="res://Scripts/UIManager.cs" id="1_j5fs4"]
-[ext_resource type="Texture2D" uid="uid://di6of1xyiycqy" path="res://Assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile291.png" id="2_ukrey"]
+[ext_resource type="Texture2D" uid="uid://ddb6kep88s4cy" path="res://Assets Propios/Ingeniero.png" id="2_j5fs4"]
 [ext_resource type="Texture2D" uid="uid://djewo6l3ad6ih" path="res://Assets Propios/Estudiante-removebg-preview.png" id="3_s021a"]
 [ext_resource type="Texture2D" uid="uid://6cscx81ypkch" path="res://Assets Propios/Quimico-removebg-preview.png" id="4_gj2ju"]
 
@@ -43,9 +43,12 @@ layout_mode = 2
 text = "Dinero: "
 
 [node name="FastTowerButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=792663254]
+texture_filter = 1
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 text = "Fast"
-icon = ExtResource("2_ukrey")
+icon = ExtResource("2_j5fs4")
+expand_icon = true
 
 [node name="NormalTowerButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1930928276]
 custom_minimum_size = Vector2(100, 100)

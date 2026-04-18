@@ -10,6 +10,7 @@ radius = 16.002811
 [node name="Tower" type="Node2D" unique_id=218678994]
 script = ExtResource("1_bn6qc")
 BulletScene = ExtResource("2_htvg3")
+Cost = 45
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=952304059]
 scale = Vector2(0.16011426, 0.13906276)

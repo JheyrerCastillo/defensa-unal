@@ -11,7 +11,7 @@ radius = 16.002811
 scale = Vector2(0.16, 0.16)
 script = ExtResource("1_edpmq")
 BulletScene = ExtResource("2_eb34q")
-Cost = 10
+Cost = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=952304059]
 position = Vector2(0.5, 0)
