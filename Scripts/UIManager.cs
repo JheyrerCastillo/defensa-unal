@@ -38,7 +38,8 @@ public partial class UIManager : Node
 		OnMoneyChanged(moneyManager.GetMoney());
 		
 		//Abre o cierra panel desplegable
-		closedX = panelMenu.Position.X;
+		float screenWidth = GetViewport().GetVisibleRect().Size.X;
+		closedX = screenWidth;
 		openX = closedX - panelMenu.Size.X;
 		
 		//Pone el precio en los botones
@@ -74,25 +75,39 @@ public partial class UIManager : Node
 	private int GetTowerCost(TowerType type)
 	{
 		//Toma la escena de la torre de BuildManager
-		var scene = buildManager.GetTowerScene(type);
-		if (scene == null) return 0;
+		var data = buildManager.GetTowerData(type);
+		if (data == null) return 0;
 		
 		//Muestra el costo de las torres disponibles
-		Tower tower = scene.Instantiate<Tower>();
-		return tower.Cost;
+		return data.Cost;
+	}
+
+	private string GetTowerName(TowerType type)
+	{
+		//Toma la escena de la torre de BuildManager
+		var data = buildManager.GetTowerData(type);
+		if (data == null) return "Nada";
+		
+		//Muestra el costo de las torres disponibles
+		return data.Name;
 	}
 	
 	private void UpdateTowerButtons()
 	{
+		//Guarda los nombres de cada tipo de torre
+		string fastName = GetTowerName(TowerType.Fast);
+		string normalName = GetTowerName(TowerType.Normal);
+		string heavyName = GetTowerName(TowerType.Heavy);
+		
 		//Guarda los costos de cada tipo de torre
 		int fastCost = GetTowerCost(TowerType.Fast);
 		int normalCost = GetTowerCost(TowerType.Normal);
 		int heavyCost = GetTowerCost(TowerType.Heavy);
 		
 		//Actualiza el precio de los botones con su costo
-		fastTowerButton.Text = "Fast\n$" + fastCost;
-		normalTowerButton.Text = "Normal\n$" + normalCost;
-		heavyTowerButton.Text = "Heavy\n$" + heavyCost;
+		fastTowerButton.Text = fastName + "\n$" + fastCost;
+		normalTowerButton.Text = normalName + "\n$" + normalCost;
+		heavyTowerButton.Text = heavyName + "\n$" + heavyCost;
 	}
 	
 	private void UpdateButtonState()

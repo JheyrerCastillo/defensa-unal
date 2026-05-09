@@ -4,22 +4,30 @@ using System.Collections.Generic;
 
 public partial class Tower : Node2D
 {
-	[Export] public PackedScene BulletScene; //Munición que usara la torre
-	[Export] public float FireRate = 1f; //Variable que determina cadencia de tiro
-	[Export] public int Cost = 50;  //Costo de la torre
+	[Export] public TowerData Data;
 	
 	private readonly List<Enemy> enemiesInRange = new List<Enemy>(); //Lista de enemigos que están en rango
-	
+
+	[Signal]
+	public delegate void TowerSelectedEventHandler(Tower tower);
+
+	private bool canBeSelected;
+
 	public override void _Ready()
 	{
+		var clickArea = GetNode<Area2D>("ClickArea");
+		clickArea.InputEvent += OnInputEvent;
+
 		//Añade o quita un enemigo que haya entrado en el rango de tiro
 		var area = GetNode<Area2D>("Area2D");
 		area.BodyEntered += OnEnemyEntered;
 		area.BodyExited += OnEnemyExited;
 		
 		var timer = GetNode<Timer>("Timer");
-		timer.WaitTime = 1f/FireRate; // para que exista una cadencia de disparo
+		timer.WaitTime = 1f/Data.FireRate; // para que exista una cadencia de disparo
 		timer.Timeout += OnShoot;
+		
+		GetTree().CreateTimer(0.2f).Timeout += () => canBeSelected = true;
 	}
 	
 	private void OnEnemyEntered(Node body)
@@ -63,6 +71,21 @@ public partial class Tower : Node2D
 	{
 		
 	}
+
+	public int GetCost()
+	{
+		return Data.Cost;
+	}
+
+	public float GetFireRate()
+	{
+		return Data.FireRate;
+	}
+
+	public string GetTowerName()
+	{
+		return Data.Name;
+	}
 	
 	private void OnShoot()
 	{
@@ -74,7 +97,7 @@ public partial class Tower : Node2D
 		Vector2 direction = GetDirectionTo(target);
 		
 		//Instancia una bala
-		var bullet = BulletScene.Instantiate<Bullet>();
+		var bullet = Data.BulletScene.Instantiate<Bullet>();
 		GetTree().CurrentScene.AddChild(bullet);
 		
 		//La bala va en dirección al objetivo
@@ -104,5 +127,14 @@ public partial class Tower : Node2D
 			sprite.FlipH = false;
 		} 
 		// Rotation = direction.Angle() + Mathf.Pi / 2;
+	}
+
+	private void OnInputEvent(Node viewport, InputEvent @event, long shapeIdx)
+	{
+		if (@event is InputEventMouseButton { Pressed: true } mouseEvent)
+		{
+			if (!canBeSelected) return;
+			EmitSignal(SignalName.TowerSelected, this);
+		}
 	}
 }

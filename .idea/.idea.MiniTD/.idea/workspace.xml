@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9179c5e-54f0-4720-9d19-57c38f10bb96" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Game.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MiniTD/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MiniTD/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Escenas/Game.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Escenas/Game.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Escenas/Towers/FastTower.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Escenas/Towers/FastTower.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Escenas/Towers/HeavyTower.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Escenas/Towers/HeavyTower.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Escenas/Towers/Tower.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Escenas/Towers/Tower.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Escenas/UI.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Escenas/UI.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/BuildManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/BuildManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/FastTower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/FastTower.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/HeavyTower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/HeavyTower.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Tower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Tower.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/UIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +31,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/JheyrerCastillo/defensa-unal.git&quot;,
-    &quot;accountId&quot;: &quot;d01c262a-71bb-40bc-a603-af2f4934d66a&quot;
+    &quot;accountId&quot;: &quot;fcaceafb-9ef2-42c6-9de6-70b5cf75198a&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -41,23 +50,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.C/C++",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Executable.Player">
     <configuration name="Debug GDScript (Running session)" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory">
       <option name="json" value="{&#10;  // Launch: &quot;Launch a new instance of the game&quot;,&#10;  // Attach: &quot;Attach to an already running game, which was started from the Godot Editor&quot;&#10;  &quot;request&quot; : &quot;Attach&quot;,&#10;  &quot;debugServer&quot; : 6006, // port should match the Debug Adapter port in the Godot Editor project settings.&#10;  &quot;scene&quot; : &quot;main&quot;, // main, current, res://path/to/file.tscn&#10;  &#10;  // &quot;playArgs&quot; : [ &quot;--editor&quot; ], // debugging a tool script&#10;  // &quot;playArgs&quot;: [&quot;--debug-collisions&quot;,&quot;--debug-navigation&quot;], // different options&#10;  &#10;  // one click deploy and debug via Godot Editor:&#10;  // &quot;platform&quot;: &quot;Android&quot;, // including Android, iOS, Web and W4 consoles&#10;  // &quot;device&quot;: &quot;0&quot;, // index of the device of a &quot;platform&quot; type&#10;}" />
@@ -68,9 +77,9 @@
       <method v="2" />
     </configuration>
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="F:/Programas/Desarrollo/Godot/Godot_v4.6.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Descargas/Godot_v4.6.1-stable_mono_linux_x86_64/Godot_v4.6.1-stable_mono_linux.x86_64" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\Jheyrer\Documents\Proyectos\defensa-unal" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
@@ -84,9 +93,9 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="F:/Programas/Desarrollo/Godot/Godot_v4.6.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Descargas/Godot_v4.6.1-stable_mono_linux_x86_64/Godot_v4.6.1-stable_mono_linux.x86_64" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\Jheyrer\Documents\Proyectos\defensa-unal" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
@@ -111,6 +120,10 @@
       <workItem from="1775846206377" duration="1217000" />
       <workItem from="1775858865890" duration="3115000" />
       <workItem from="1776370560570" duration="756000" />
+      <workItem from="1778199767879" duration="827000" />
+      <workItem from="1778249207644" duration="13212000" />
+      <workItem from="1778334922687" duration="1530000" />
+      <workItem from="1778337349373" duration="35000" />
     </task>
     <servers />
   </component>
