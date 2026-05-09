@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 public partial class BuildManager : Node
 {
+	[Export] public PackedScene FastTowerScene;
+	[Export] public PackedScene NormalTowerScene;
+	[Export] public PackedScene HeavyTowerScene;
+	
 	[Export] public TowerData NormalTowerData;
 	[Export] public TowerData FastTowerData;
 	[Export] public TowerData HeavyTowerData;
@@ -13,8 +17,9 @@ public partial class BuildManager : Node
 	private MoneyManager moneyManager; //Nodo que maneja el dinero
 	
 	private TowerType? selectedTower = null; //Tipo de torre seleccionada iniciada sin valor
-	
-	private Dictionary<TowerType, TowerData> towerDatas; //Diccionario de escenas de las torres
+
+	private Dictionary<TowerType, PackedScene> towerScenes;
+	private Dictionary<TowerType, TowerData> towerDatas; //Diccionario de datos de las torres
 	
 	public override void _Ready()
 	{
@@ -27,6 +32,12 @@ public partial class BuildManager : Node
 		moneyManager = parent.GetNode<MoneyManager>("MoneyManager");
 		
 		//Añade a un diccionario las torres disponibles
+		towerScenes = new Dictionary<TowerType, PackedScene>()
+		{
+			{ TowerType.Normal, NormalTowerScene },
+			{ TowerType.Heavy, HeavyTowerScene },
+			{ TowerType.Fast, FastTowerScene }
+		};
 		towerDatas = new Dictionary<TowerType, TowerData>()
 		{
 			{TowerType.Fast, FastTowerData},
@@ -38,6 +49,11 @@ public partial class BuildManager : Node
 	public TowerData GetTowerData(TowerType type)
 	{
 		return towerDatas.GetValueOrDefault(type);
+	}
+
+	public PackedScene GetTowerScene(TowerType type)
+	{
+		return towerScenes.GetValueOrDefault(type);
 	}
 	
 	public void HandleInput(InputEvent @event)
@@ -59,11 +75,13 @@ public partial class BuildManager : Node
 			//Si se puede construir...
 			if (mapManager.CanBuild(x,y))
 			{
+				if (selectedTower == null) return;
 				//Instancia la torre seleccionada y toma su costo
-				if (!towerDatas.TryGetValue(selectedTower.Value, out var towerData)) return;
-				Tower towerInstance = towerData.TowerScene.Instantiate<Tower>();
-				towerInstance.Data = towerData;
-				int cost = towerData.Cost;
+				if (!towerDatas.TryGetValue(selectedTower.Value, out var data)) return;
+				if (!towerScenes.TryGetValue(selectedTower.Value, out var scene)) return;
+				Tower towerInstance = scene.Instantiate<Tower>();
+				towerInstance.Data = data;
+				int cost = data.Cost;
 				
 				//Gasta el dinero que gastó en la torre
 				if (!moneyManager.SpendMoney(cost)) return;

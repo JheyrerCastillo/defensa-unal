@@ -7,6 +7,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_usulm"]
 radius = 16.002811
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cn5xm"]
+size = Vector2(64, 64)
+
 [node name="FastTower" type="Node2D" unique_id=218678994]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_cn5xm")
@@ -24,3 +27,8 @@ shape = SubResource("CircleShape2D_usulm")
 
 [node name="Timer" type="Timer" parent="." unique_id=162075580]
 autostart = true
+
+[node name="ClickArea" type="Area2D" parent="." unique_id=1359979146]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea" unique_id=1611609695]
+shape = SubResource("RectangleShape2D_cn5xm")
