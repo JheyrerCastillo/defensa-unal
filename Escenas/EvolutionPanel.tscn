@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://okacmgsiuuwx"]
+
+[ext_resource type="Script" uid="uid://cepbdc0ngsa8k" path="res://Scripts/EvolutionPanel.cs" id="1_5itlp"]
+
+[node name="EvolutionPanel" type="CanvasLayer" unique_id=1902921242]
+script = ExtResource("1_5itlp")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=927645482]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1580030297]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1084477356]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1345099083]
+layout_mode = 2
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1798793454]
+layout_mode = 2
