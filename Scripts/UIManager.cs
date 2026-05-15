@@ -19,31 +19,34 @@ public partial class UIManager : Node
 	private MoneyManager moneyManager; //Nodo que maneja el dinero
 	private Label moneyLabel; //Label que muestra el dinero
 	private Game game; //Nodo que maneja el juego
-	
+
+
+	public void Inicializar(BuildManager bm, MoneyManager mm, Game gameRef)
+	{
+		buildManager = bm;
+		moneyManager = mm;
+		game = gameRef;
+
+		//actualiza indicador de dinero
+		moneyManager.MoneyChanged += OnMoneyChanged;
+		OnMoneyChanged(moneyManager.GetMoney());
+
+		//Pone el precio en los botones
+		UpdateTowerButtons();
+	}
+
 	public override void _Ready()
 	{
-		//Referencia de nodos necesarios
-		buildManager = GetNode<BuildManager>("../../Game/BuildManager");
-		moneyManager = GetNode<MoneyManager>("../../Game/MoneyManager");
-		game = GetNode<Game>("../../Game");
-		
 		//Referencia de botones necesarios
 		moneyLabel = GetNode<Label>("../Panel/MarginContainer/VBoxContainer/MoneyLabel");
 		fastTowerButton = GetNode<Button>("../Panel/MarginContainer/VBoxContainer/FastTowerButton");
 		normalTowerButton = GetNode<Button>("../Panel/MarginContainer/VBoxContainer/NormalTowerButton");
 		heavyTowerButton = GetNode<Button>("../Panel/MarginContainer/VBoxContainer/HeavyTowerButton");
 		
-		//actualiza indicador de dinero con la disponible
-		moneyManager.MoneyChanged += OnMoneyChanged;
-		OnMoneyChanged(moneyManager.GetMoney());
-		
 		//Abre o cierra panel desplegable
 		float screenWidth = GetViewport().GetVisibleRect().Size.X;
 		closedX = screenWidth;
 		openX = closedX - panelMenu.Size.X;
-		
-		//Pone el precio en los botones
-		UpdateTowerButtons();
 	}
 	
 	public void ShowWin()

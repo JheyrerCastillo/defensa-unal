@@ -5,12 +5,15 @@ public partial class Game : Node2D
 	private MoneyManager moneyManager; //Nodo que maneja el dinero
 	private UIManager uiManager; //Nodo que maneja la interfaz de usuario
 	
+	public void Inicializar(UIManager uiRef)
+	{
+		uiManager = uiRef;
+	}
 	public override void _Ready()
 	{
 		//Referencia de nodos necesarios
 		waveManager = GetNode<WaveManager>("WaveManager");
 		moneyManager = GetNode<MoneyManager>("MoneyManager");
-		uiManager = GetNode<UIManager>("../UI/UIManager");
 	}
 	
 	public void GameOver()

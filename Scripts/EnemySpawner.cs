@@ -11,13 +11,16 @@ public partial class EnemySpawner : Node2D
 	private MapManager mapManager; //Nodo que maneja mapas
 	private TileMap tileMap; //Mapa en el que spawnear enemigos
 	private WaveManager waveManager; //Nodo que maneja las oleadas
+	private Game game;
+	private MoneyManager moneyManager;
 	
 	private Dictionary<EnemyType, PackedScene> enemyScenes; //Diccionario de escenas de los enemigos
 	
 	public override void _Ready()
 	{
 		//Referencia de nodos necesarios
-		var game = GetParent();
+		game = GetParent<Game>();
+		moneyManager = game.GetNode<MoneyManager>("MoneyManager");
 		mapManager = game.GetNode<MapManager>("MapManager");
 		tileMap = game.GetNode<TileMap>("TileMap");
 		waveManager = game.GetNode<WaveManager>("WaveManager");
@@ -36,6 +39,7 @@ public partial class EnemySpawner : Node2D
 		//Instancia un enemigo
 		if (!enemyScenes.TryGetValue(type, out var sceneToSpawn)) return;
 		var enemy = sceneToSpawn.Instantiate<Enemy>();
+		enemy.Inicializar(game, moneyManager, waveManager);
 		
 		//Camino por el que irá el enemigo
 		var path = mapManager.GetPath();

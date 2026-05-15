@@ -9,17 +9,21 @@ public partial class EvolutionPanel : CanvasLayer
 	private MoneyManager moneyManager;
 	private BuildManager buildManager;
 	
+	public void Inicializar(MoneyManager mm, BuildManager bm)
+	{
+		moneyManager = mm;
+		buildManager = bm;
+
+		moneyManager.MoneyChanged += OnMoneyChanged;
+		OnMoneyChanged(moneyManager.GetMoney());
+	}
+	
 	public override void _Ready()
 	{
-		moneyManager = GetNode<MoneyManager>("../../Game/MoneyManager");
-		buildManager = GetNode<BuildManager>("../../Game/BuildManager");
 		moneyLabel = GetNode<Label>("PanelContainer/MarginContainer/VBoxContainer/MoneyLabel");
 		container = GetNode<VBoxContainer>("PanelContainer/MarginContainer/VBoxContainer");
 		buttonsContainer = GetNode<VBoxContainer>("PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer");
 		Visible = false;
-
-		moneyManager.MoneyChanged += OnMoneyChanged;
-		OnMoneyChanged(moneyManager.GetMoney());
 	}
 
 	private void OnMoneyChanged(int money)

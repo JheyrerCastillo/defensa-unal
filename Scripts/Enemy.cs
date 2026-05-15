@@ -22,6 +22,13 @@ public partial class Enemy : CharacterBody2D
 	private int index; //Índice que indica hacia donde se mueve el enemigo
 	protected float Speed = 100f; //Velocidad del enemigo
 	
+	public void Inicializar(Game gameRef, MoneyManager moneyRef, WaveManager waveRef)
+	{
+		game = gameRef;
+		moneyManager = moneyRef;
+		waveManager = waveRef;
+	}
+	
 	//Toma la vida actual del enemigo para otros scripts
 	public float GetSpeed()
 	{
@@ -32,9 +39,6 @@ public partial class Enemy : CharacterBody2D
 	{
 		sprite = GetNode<Sprite2D>("Derecha");
 		sprite.Texture = SpriteUp;
-		game = GetTree().CurrentScene.GetNode<Game>("Game");
-		moneyManager = GetTree().CurrentScene.GetNode<MoneyManager>("Game/MoneyManager");
-		waveManager = GetTree().CurrentScene.GetNode<WaveManager>("Game/WaveManager");
 		
 		currentHealth = MaxHealth; //Inicia la vida actual del enemigo como la vida total
 	}

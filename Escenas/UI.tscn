@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://okacmgsiuuwx" path="res://Escenas/EvolutionPanel.tscn" id="5_ukrey"]
 
 [node name="UI" type="CanvasLayer" unique_id=774785975]
+follow_viewport_enabled = true
 
 [node name="UIManager" type="Node" parent="." unique_id=1132230594 node_paths=PackedStringArray("panelMenu", "toggleButton", "gameOverPanel", "winPanel")]
 script = ExtResource("1_j5fs4")
