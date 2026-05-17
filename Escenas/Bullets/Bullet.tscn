@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bm42jhl7o2tjh"]
 
 [ext_resource type="Script" uid="uid://bterro5ux628f" path="res://Scripts/Bullet.cs" id="1_5q0pg"]
-[ext_resource type="Texture2D" uid="uid://dxoedvvowlsk1" path="res://Assets Propios/stewart.png" id="2_5nlqj"]
+[ext_resource type="Texture2D" uid="uid://edj7l1edtxc4" path="res://Assets Propios/Balas/ladrillo.png" id="2_5nlqj"]
+[ext_resource type="PackedScene" uid="uid://c24sawer2il3" path="res://Escenas/Bullets/Salsachoque.tscn" id="2_hnry5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_np30r"]
 radius = 9.0
@@ -9,9 +10,10 @@ radius = 9.0
 [node name="Bullet" type="Area2D" unique_id=152005676]
 script = ExtResource("1_5q0pg")
 Speed = 300.0
+ColisionEffect = ExtResource("2_hnry5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1205256969]
-scale = Vector2(0.06501937, 0.053172063)
+scale = Vector2(0.0037878999, 0.005126091)
 texture = ExtResource("2_5nlqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1957641022]

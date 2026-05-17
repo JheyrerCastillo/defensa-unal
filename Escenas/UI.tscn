@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cx5i4iwu80g1b"]
 
 [ext_resource type="Script" uid="uid://d6e2brglqyja" path="res://Scripts/UIManager.cs" id="1_j5fs4"]
-[ext_resource type="Texture2D" uid="uid://ddb6kep88s4cy" path="res://Assets Propios/Ingeniero.png" id="2_j5fs4"]
-[ext_resource type="Texture2D" uid="uid://djewo6l3ad6ih" path="res://Assets Propios/Estudiante-removebg-preview.png" id="3_s021a"]
-[ext_resource type="Texture2D" uid="uid://6cscx81ypkch" path="res://Assets Propios/Quimico-removebg-preview.png" id="4_gj2ju"]
+[ext_resource type="Texture2D" uid="uid://ddb6kep88s4cy" path="res://Assets Propios/Torres/Ingeniero.png" id="2_ukrey"]
+[ext_resource type="Texture2D" uid="uid://ccxke0rgq22k7" path="res://Assets Propios/Torres/Estudiante.png" id="3_s021a"]
+[ext_resource type="Texture2D" uid="uid://bniesx6cbc2q3" path="res://Assets Propios/Torres/Quimico.png" id="4_gj2ju"]
 [ext_resource type="PackedScene" uid="uid://okacmgsiuuwx" path="res://Escenas/EvolutionPanel.tscn" id="5_ukrey"]
 
 [node name="UI" type="CanvasLayer" unique_id=774785975]
@@ -49,18 +49,18 @@ texture_filter = 1
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 text = "Fast"
-icon = ExtResource("2_j5fs4")
+icon = ExtResource("2_ukrey")
 expand_icon = true
 
 [node name="NormalTowerButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1930928276]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 text = "Normal"
 icon = ExtResource("3_s021a")
 expand_icon = true
 
 [node name="HeavyTowerButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=178310925]
-custom_minimum_size = Vector2(100, 90)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 text = "Heavy"
 icon = ExtResource("4_gj2ju")

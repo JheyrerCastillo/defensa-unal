@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://lry754t212a6"]
+
+[ext_resource type="Script" uid="uid://b2r5jbu2hrs7t" path="res://Scripts/FastBullet.cs" id="1_0kse6"]
+[ext_resource type="Texture2D" uid="uid://dxoedvvowlsk1" path="res://Assets Propios/Balas/stewart.png" id="2_75dvb"]
+[ext_resource type="PackedScene" uid="uid://c24sawer2il3" path="res://Escenas/Bullets/Salsachoque.tscn" id="2_ab1o3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_np30r"]
+radius = 9.0
+
+[node name="FastBullet" type="Area2D" unique_id=152005676]
+script = ExtResource("1_0kse6")
+Speed = 500.0
+Damage = 0.75
+ColisionEffect = ExtResource("2_ab1o3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1205256969]
+scale = Vector2(0.06501937, 0.053172063)
+texture = ExtResource("2_75dvb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1957641022]
+shape = SubResource("CircleShape2D_np30r")

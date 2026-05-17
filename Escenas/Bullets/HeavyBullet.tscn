@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://do1gm4mj6ek7i"]
+
+[ext_resource type="Script" uid="uid://djlgrp36esnm2" path="res://Scripts/HeavyBullet.cs" id="1_40h0s"]
+[ext_resource type="PackedScene" uid="uid://c24sawer2il3" path="res://Escenas/Bullets/Salsachoque.tscn" id="2_dw0ih"]
+[ext_resource type="Texture2D" uid="uid://cg463aa8jdy0r" path="res://Assets Propios/Balas/Botellamagica.webp" id="3_wjkf3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_np30r"]
+radius = 9.0
+
+[node name="Heavybullet" type="Area2D" unique_id=152005676]
+script = ExtResource("1_40h0s")
+Speed = 200.0
+Damage = 1.75
+ColisionEffect = ExtResource("2_dw0ih")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1205256969]
+scale = Vector2(0.027915858, 0.019493464)
+texture = ExtResource("3_wjkf3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1957641022]
+shape = SubResource("CircleShape2D_np30r")

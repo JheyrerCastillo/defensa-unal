@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bm42jhl7o2tjh" path="res://Escenas/Bullets/Bullet.tscn" id="1_j4pu2"]
 [ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/FastTowerData.tres" id="3_wfqs2"]
 [ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/HeavyTowerData.tres" id="4_lesup"]
-[ext_resource type="Texture2D" uid="uid://djewo6l3ad6ih" path="res://Assets Propios/Estudiante-removebg-preview.png" id="5_f8loc"]
+[ext_resource type="Texture2D" uid="uid://ccxke0rgq22k7" path="res://Assets Propios/Torres/Estudiante.png" id="5_j4pu2"]
 
 [resource]
 script = ExtResource("1_a6ue5")
 Name = "Normal"
-icon = ExtResource("5_f8loc")
+icon = ExtResource("5_j4pu2")
 BulletScene = ExtResource("1_j4pu2")
 Evolutions = Array[ExtResource("1_a6ue5")]([ExtResource("3_wfqs2"), ExtResource("4_lesup")])
 metadata/_custom_type_script = "uid://buvumynxrdvyb"
