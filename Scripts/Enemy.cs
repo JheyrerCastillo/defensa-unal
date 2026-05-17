@@ -7,11 +7,11 @@ public partial class Enemy : CharacterBody2D
 	[Export] public Texture2D SpriteUp;
 	[Export] public Texture2D SpriteLeft;
 	[Export] public Texture2D SpriteDown;
-	[Export] public int MaxHealth = 3; //Vida total del enemigo
+	[Export] public float MaxHealth = 3; //Vida total del enemigo
 	[Export] public int Reward = 10; //Dinero obtenido al matar el enemigo
 
 	private Sprite2D sprite; // Creo la variable sprite para después poder cambiarla
-	private int currentHealth; //Vida maxima del enemigo
+	private float currentHealth; //Vida maxima del enemigo
 	private bool isDead;
 	
 	private Game game; //Nodo que maneja el juego
@@ -43,7 +43,7 @@ public partial class Enemy : CharacterBody2D
 		currentHealth = MaxHealth; //Inicia la vida actual del enemigo como la vida total
 	}
 	
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 		if (isDead) return;
 		
