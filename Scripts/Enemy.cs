@@ -108,6 +108,12 @@ public partial class Enemy : CharacterBody2D
 		else if (angulo <= -150 || angulo >= 150)
 		{
 			sprite.Texture = SpriteLeft;
+			sprite.FlipH = false;
+		}
+		else if (angulo >= -30 && angulo <= 30)
+		{
+			sprite.Texture = SpriteLeft;
+			sprite.FlipH = true;
 		}
 		else
 		{
