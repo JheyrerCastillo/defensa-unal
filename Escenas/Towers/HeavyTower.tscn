@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://hf6alo7ujmd"]
 
 [ext_resource type="Script" uid="uid://bksnf16ed68n3" path="res://Scripts/HeavyTower.cs" id="1_edpmq"]
-[ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/HeavyTowerData.tres" id="2_h7ntm"]
+[ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/Towers/HeavyTowerData.tres" id="2_h7ntm"]
 [ext_resource type="Texture2D" uid="uid://bniesx6cbc2q3" path="res://Assets Propios/Torres/Quimico.png" id="3_h7ntm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usulm"]

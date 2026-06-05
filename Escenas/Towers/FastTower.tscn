@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dgaf20x4tag3x"]
 
 [ext_resource type="Script" uid="uid://c1hhj3pm3vkb" path="res://Scripts/FastTower.cs" id="1_cn5xm"]
-[ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/FastTowerData.tres" id="2_cn5xm"]
-[ext_resource type="Texture2D" uid="uid://ddb6kep88s4cy" path="res://Assets Propios/Torres/Ingeniero.png" id="3_cn5xm"]
+[ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/Towers/FastTowerData.tres" id="2_cn5xm"]
+[ext_resource type="Texture2D" uid="uid://ddb6kep88s4cy" path="res://Assets Propios/Ingeniero.png" id="3_cn5xm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usulm"]
 radius = 16.002811

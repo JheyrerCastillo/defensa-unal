@@ -14,12 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://m1kd8vdppt2t" path="res://Assets/kenney_tower-defense-top-down/edificiosYCyt.png" id="12_23yio"]
 [ext_resource type="Script" uid="uid://12f8wu5ashf1" path="res://Scripts/WaveManager.cs" id="13_cmv48"]
 [ext_resource type="Script" uid="uid://b4bdfkylrmhdg" path="res://Scripts/BuildManager.cs" id="14_c4mqa"]
+[ext_resource type="Resource" uid="uid://cv8bk3qur2fk7" path="res://Resources/Levels/Nivel1.tres" id="14_t74yr"]
 [ext_resource type="PackedScene" uid="uid://dgaf20x4tag3x" path="res://Escenas/Towers/FastTower.tscn" id="15_gqfk7"]
 [ext_resource type="PackedScene" uid="uid://bbwqlhmim3uwb" path="res://Escenas/Towers/Tower.tscn" id="16_15jls"]
 [ext_resource type="PackedScene" uid="uid://hf6alo7ujmd" path="res://Escenas/Towers/HeavyTower.tscn" id="17_f62p3"]
-[ext_resource type="Resource" uid="uid://dqdy1218wisti" path="res://Resources/NormalTowerData.tres" id="18_onhyo"]
-[ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/FastTowerData.tres" id="19_sf8dr"]
-[ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/HeavyTowerData.tres" id="20_g4vf4"]
+[ext_resource type="Resource" uid="uid://dqdy1218wisti" path="res://Resources/Towers/NormalTowerData.tres" id="18_onhyo"]
+[ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/Towers/FastTowerData.tres" id="19_sf8dr"]
+[ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/Towers/HeavyTowerData.tres" id="20_g4vf4"]
 [ext_resource type="Script" uid="uid://diskkq5mdp5jp" path="res://Scripts/MoneyManager.cs" id="21_ivudl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trn2v"]
@@ -5340,6 +5341,7 @@ layer_0/tile_data = PackedInt32Array(262156, 786433, 4, 327692, 786433, 5, 39322
 [node name="WaveManager" type="Node" parent="." unique_id=1360772308 node_paths=PackedStringArray("Spawner")]
 script = ExtResource("13_cmv48")
 Spawner = NodePath("../EnemySpawner")
+LevelData = ExtResource("14_t74yr")
 
 [node name="BuildManager" type="Node" parent="." unique_id=2106443991]
 script = ExtResource("14_c4mqa")

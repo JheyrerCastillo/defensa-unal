@@ -13,13 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://dcy2ghuf8wd6i" path="res://Assets/kenney_tower-defense-top-down/Tilesheet/towerDefense_tilesheet.png" id="11_1eukg"]
 [ext_resource type="Texture2D" uid="uid://djami1vu28obm" path="res://Assets/kenney_tower-defense-top-down/edificiosInge.png" id="12_bkxef"]
 [ext_resource type="Script" uid="uid://12f8wu5ashf1" path="res://Scripts/WaveManager.cs" id="13_cbwu0"]
+[ext_resource type="Resource" uid="uid://cv8bk3qur2fk7" path="res://Resources/Levels/Nivel1.tres" id="14_2dt1w"]
 [ext_resource type="Script" uid="uid://b4bdfkylrmhdg" path="res://Scripts/BuildManager.cs" id="14_u8sr6"]
-[ext_resource type="Resource" uid="uid://dqdy1218wisti" path="res://Resources/NormalTowerData.tres" id="15_2n7dd"]
+[ext_resource type="Resource" uid="uid://dqdy1218wisti" path="res://Resources/Towers/NormalTowerData.tres" id="15_2n7dd"]
 [ext_resource type="PackedScene" uid="uid://dgaf20x4tag3x" path="res://Escenas/Towers/FastTower.tscn" id="15_mkhei"]
 [ext_resource type="PackedScene" uid="uid://bbwqlhmim3uwb" path="res://Escenas/Towers/Tower.tscn" id="16_c6x6f"]
-[ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/FastTowerData.tres" id="16_ovwsw"]
+[ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/Towers/FastTowerData.tres" id="16_ovwsw"]
 [ext_resource type="PackedScene" uid="uid://hf6alo7ujmd" path="res://Escenas/Towers/HeavyTower.tscn" id="17_ri68h"]
-[ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/HeavyTowerData.tres" id="17_tm2rd"]
+[ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/Towers/HeavyTowerData.tres" id="17_tm2rd"]
 [ext_resource type="Script" uid="uid://diskkq5mdp5jp" path="res://Scripts/MoneyManager.cs" id="18_q53gk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trn2v"]
@@ -5286,6 +5287,7 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 2, 196608,
 [node name="WaveManager" type="Node" parent="." unique_id=1360772308 node_paths=PackedStringArray("Spawner")]
 script = ExtResource("13_cbwu0")
 Spawner = NodePath("../EnemySpawner")
+LevelData = ExtResource("14_2dt1w")
 
 [node name="BuildManager" type="Node" parent="." unique_id=2106443991]
 script = ExtResource("14_u8sr6")

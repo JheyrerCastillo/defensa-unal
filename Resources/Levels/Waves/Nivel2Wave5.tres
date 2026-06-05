@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://g75gx430hq3k"]
+
+[ext_resource type="Script" uid="uid://cb2hjx5dpnwag" path="res://Scripts/EnemySpawnData.cs" id="1_cp8lr"]
+[ext_resource type="Script" uid="uid://cdyhvn611nitx" path="res://Scripts/WaveData.cs" id="2_pb04w"]
+
+[sub_resource type="Resource" id="Resource_1lv3h"]
+script = ExtResource("1_cp8lr")
+Count = 5
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_1f51v"]
+script = ExtResource("1_cp8lr")
+Type = 2
+Count = 2
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_bohph"]
+script = ExtResource("1_cp8lr")
+Type = 1
+Count = 5
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_gyeuv"]
+script = ExtResource("1_cp8lr")
+Type = 2
+Count = 2
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_432lp"]
+script = ExtResource("1_cp8lr")
+Count = 5
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_350o6"]
+script = ExtResource("1_cp8lr")
+Type = 2
+Count = 2
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_7p0s5"]
+script = ExtResource("1_cp8lr")
+Type = 1
+Count = 5
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_ffs3q"]
+script = ExtResource("1_cp8lr")
+Count = 10
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[resource]
+script = ExtResource("2_pb04w")
+Enemies = Array[ExtResource("1_cp8lr")]([SubResource("Resource_1lv3h"), SubResource("Resource_1f51v"), SubResource("Resource_bohph"), SubResource("Resource_gyeuv"), SubResource("Resource_432lp"), SubResource("Resource_350o6"), SubResource("Resource_7p0s5"), SubResource("Resource_ffs3q")])
+SpawnDelay = 0.4
+metadata/_custom_type_script = "uid://cdyhvn611nitx"

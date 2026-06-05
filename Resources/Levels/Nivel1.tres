@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://cv8bk3qur2fk7"]
+
+[ext_resource type="Script" uid="uid://cdyhvn611nitx" path="res://Scripts/WaveData.cs" id="1_6gfp7"]
+[ext_resource type="Script" uid="uid://dh38uno6w3hmd" path="res://Scripts/LevelData.cs" id="2_arwaj"]
+[ext_resource type="Resource" uid="uid://dpesk5vleh8k8" path="res://Resources/Levels/Waves/Nivel1Wave1.tres" id="2_dpi4y"]
+[ext_resource type="Resource" uid="uid://di35hrri4lnf" path="res://Resources/Levels/Waves/Nivel1Wave2.tres" id="3_np00q"]
+[ext_resource type="Resource" uid="uid://c4u6c2hk3lbtq" path="res://Resources/Levels/Waves/Nivel1Wave3.tres" id="4_08dc4"]
+[ext_resource type="Resource" uid="uid://cs00julnfwxgw" path="res://Resources/Levels/Waves/Nivel1Wave4.tres" id="5_ssd6r"]
+[ext_resource type="Resource" uid="uid://4ygpx4r6mbnh" path="res://Resources/Levels/Waves/Nivel1Wave5.tres" id="6_45826"]
+
+[resource]
+script = ExtResource("2_arwaj")
+Waves = Array[ExtResource("1_6gfp7")]([ExtResource("2_dpi4y"), ExtResource("3_np00q"), ExtResource("4_08dc4"), ExtResource("5_ssd6r"), ExtResource("6_45826")])
+metadata/_custom_type_script = "uid://dh38uno6w3hmd"
