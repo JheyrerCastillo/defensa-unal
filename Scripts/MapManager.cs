@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public partial class MapManager : Node
@@ -8,6 +9,7 @@ public partial class MapManager : Node
 	private int height; //Alto del mapa
 	
 	private TileMap tileMap; //Mapa a manejar
+	private List<List<Vector2I>> cachedPaths; //Caché de todos los caminos posibles
 	
 	public override void _Ready()
 	{
@@ -16,6 +18,11 @@ public partial class MapManager : Node
 		
 		//Inicializa el mapa
 		InitializeMap();
+		
+		//Cachea todos los caminos posibles
+		Vector2I start = GetStart();
+		Vector2I end = GetEnd();
+		cachedPaths = FindAllPaths(start, end);
 	}
 	
 	private void InitializeMap()
@@ -92,19 +99,20 @@ public partial class MapManager : Node
 	
 	public List<Vector2I> GetPath()
 	{
-		//Obtiene la ubicación del inicio y del final
-		Vector2I start = GetStart();
-		Vector2I end = GetEnd();
+		//Si no hay caminos cacheados, retorna lista vacía
+		if (cachedPaths == null || cachedPaths.Count == 0) return new List<Vector2I>();
 		
-		//Crea una nueva cola para el camino
-		Queue<Vector2I> queue = new Queue<Vector2I>();
-		//Crea un nuevo diccionario para saber de donde viene
-		Dictionary<Vector2I, Vector2I> cameFrom = new Dictionary<Vector2I, Vector2I>();
-		
-		//Guarda el inicio en la cola de camino
-		queue.Enqueue(start);
-		//Determina que no hay nada antes del inicio
-		cameFrom[start] = start;
+		//Retorna un camino aleatorio del caché
+		Random random = new Random();
+		int randomIndex = random.Next(cachedPaths.Count);
+		return cachedPaths[randomIndex];
+	}
+	
+	private List<List<Vector2I>> FindAllPaths(Vector2I start, Vector2I end)
+	{
+		List<List<Vector2I>> allPaths = new List<List<Vector2I>>();
+		List<Vector2I> currentPath = new List<Vector2I>();
+		HashSet<Vector2I> visited = new HashSet<Vector2I>();
 		
 		//Direcciones posibles
 		Vector2I[] directions =
@@ -119,29 +127,40 @@ public partial class MapManager : Node
 			new Vector2I(-1,-1)
 		];
 		
-		//Mientras el camino sea mayor a 0
-		while (queue.Count > 0)
+		FindAllPathsDFS(start, end, currentPath, visited, directions, allPaths);
+		
+		return allPaths;
+	}
+	
+	private void FindAllPathsDFS(Vector2I current, Vector2I end, List<Vector2I> currentPath, 
+		HashSet<Vector2I> visited, Vector2I[] directions, List<List<Vector2I>> allPaths)
+	{
+		//Añadir nodo actual al camino
+		currentPath.Add(current);
+		visited.Add(current);
+		
+		//Si llegamos al final, guardar el camino
+		if (current == end)
 		{
-			Vector2I current = queue.Dequeue();
-			
-			if (current == end) break; //Si llega al final, termina la busqueda
-			
-			//Para cada dirección...
+			allPaths.Add(new List<Vector2I>(currentPath));
+		}
+		else
+		{
+			//Explorar todas las direcciones
 			foreach (var dir in directions)
 			{
-				//Guarda el vector adyacente
 				Vector2I next = current + dir;
 				
-				//Verifica si está en el límite
+				//Verificar límites
 				if (!IsInside(next)) continue;
 				
-				//Verifica si se puede caminar por el vector adyacente
+				//Verificar si es caminable
 				if (!IsWalkable(next)) continue;
 				
-				//Evita nodos en los que ya se estuvo
-				if (cameFrom.ContainsKey(next)) continue;
+				//Evitar nodos ya visitados
+				if (visited.Contains(next)) continue;
 				
-				//Atraviesa en diagonal solo si los tiles adyacentes al diagonal también son camino
+				//Atraviesa en diagonal solo si los tiles adyacentes también son camino
 				if (dir.X != 0 && dir.Y != 0)
 				{
 					Vector2I side1 = new Vector2I(current.X + dir.X, current.Y);
@@ -150,36 +169,14 @@ public partial class MapManager : Node
 					if (!IsWalkable(side1) || !IsWalkable(side2)) continue;
 				}
 				
-				//Guarda el vector adyacente en la cola
-				queue.Enqueue(next);
-				//Guarda el vector actual como el vector del que proviene el siguiente
-				cameFrom[next] = current;
+				//Recursión
+				FindAllPathsDFS(next, end, currentPath, visited, directions, allPaths);
 			}
 		}
 		
-		//Crea una lista de vectores que será el camino
-		List<Vector2I> path = new List<Vector2I>();
-		
-		//Si no se encuentra camino, retorna la lista vacía
-		if (!cameFrom.ContainsKey(end)) return path;
-		
-		//Toma el final como un vector temporal
-		Vector2I temp = end;
-		
-		//Mientras el vector temporal sea diferente del inicial, se añade temp al camino y temp pasa a ser el uqe va antes
-		while (temp != start)
-		{
-			path.Add(temp);
-			temp = cameFrom[temp];
-		}
-		
-		//Añade el inicio al final de la lista, quedando una lista con el camino de final a inicio
-		path.Add(start);
-		//Invierte el camino para que quede de inicio a final
-		path.Reverse();
-		
-		//Retorna el camino completo
-		return path;
+		//Backtracking
+		currentPath.RemoveAt(currentPath.Count - 1);
+		visited.Remove(current);
 	}
 	
 	private bool IsInside(Vector2I pos)

@@ -50,14 +50,14 @@ public partial class Tower : Node2D
 		//Si no hay enemigos en rango, no apunta a nada
 		if (enemiesInRange.Count == 0) return null;
 		
-		//Cola con prioridad con los enemigos con más vida que esten en rango
+		//Cola con prioridad con los enemigos más rápidos que esten en rango
 		var pq = new PriorityQueue<Enemy,float>();
 		foreach (var enemy in enemiesInRange)
 		{
 			pq.Enqueue(enemy, -enemy.GetSpeed());
 		}
 		
-		//Retorna el enemigo con más vida
+		//Retorna el enemigo más rápido
 		return pq.Dequeue();
 	}
 	

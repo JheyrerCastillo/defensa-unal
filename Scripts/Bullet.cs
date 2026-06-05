@@ -24,23 +24,15 @@ public partial class Bullet : Area2D
 	public override void _Process(double delta)
 	{
 		Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
-		/* Anterior condición target == null || !IsInstanceValid(target) || */
 		if (GlobalPosition.X < 0  || GlobalPosition.X > 1153 || GlobalPosition.Y < 0 || GlobalPosition.Y > 640)
 		{
 			QueueFree();
 			return;
 		}
-		
-		/* Esto era para que la bala fuera un proyectil
-		   lo que está ya obsoleto
-		   Vector2 direction = (target.GlobalPosition - GlobalPosition).Normalized(); */
-		
+
 		//Se dirige a la posición que le indicó la torre
 		GlobalPosition += targetDirection * Speed * (float)delta;
 		sprite.Rotation += (float)delta * Speed/4;
-
-
-		// Complemento de proyectiles: Rotation = direction.Angle();
 	}
 	
 	private void OnBodyEntered(Node body)

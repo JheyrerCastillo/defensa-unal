@@ -51,7 +51,10 @@ public partial class Main : Node2D
     public override void _Input(InputEvent @event)
     {
         //Toma los clics y los transfiere para la construcción de torres
-        buildManager.HandleInput(@event);
+        if (buildManager != null)
+        {
+            buildManager.HandleInput(@event);
+        }
     }
     
 }

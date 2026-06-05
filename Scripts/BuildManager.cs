@@ -28,7 +28,7 @@ public partial class BuildManager : Node
 		
 		tileMap = parent.GetNode<TileMap>("TileMap");
 		mapManager = parent.GetNode<MapManager>("MapManager");
-		game = parent.GetNode<Game>(".");
+		game = parent as Game;
 		moneyManager = parent.GetNode<MoneyManager>("MoneyManager");
 		
 		//Añade a un diccionario las torres disponibles
