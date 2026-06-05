@@ -129,7 +129,61 @@ public partial class MapManager : Node
 		
 		FindAllPathsDFS(start, end, currentPath, visited, directions, allPaths);
 		
-		return allPaths;
+		//Filtrar caminos con movimientos redundantes
+		List<List<Vector2I>> filteredPaths = FilterRedundantPaths(allPaths);
+		
+		//Si todos los caminos fueron filtrados, retornar los originales
+		if (filteredPaths.Count == 0 && allPaths.Count > 0)
+		{
+			return allPaths;
+		}
+		
+		return filteredPaths;
+	}
+	
+	private List<List<Vector2I>> FilterRedundantPaths(List<List<Vector2I>> paths)
+	{
+		List<List<Vector2I>> filteredPaths = new List<List<Vector2I>>();
+		
+		foreach (var path in paths)
+		{
+			if (!HasRedundantMovements(path))
+			{
+				filteredPaths.Add(path);
+			}
+		}
+		
+		return filteredPaths;
+	}
+	
+	private bool HasRedundantMovements(List<Vector2I> path)
+	{
+		if (path.Count < 3) return false;
+		
+		for (int i = 2; i < path.Count; i++)
+		{
+			Vector2I prev = path[i - 2];
+			Vector2I curr = path[i - 1];
+			Vector2I next = path[i];
+			
+			//Detectar movimientos que se oponen directamente en el mismo eje
+			Vector2I dir1 = curr - prev;
+			Vector2I dir2 = next - curr;
+			
+			//Si el movimiento en X se opone (ej: derecha luego izquierda)
+			if (dir1.X != 0 && dir2.X != 0 && Mathf.Sign(dir1.X) != Mathf.Sign(dir2.X))
+			{
+				return true;
+			}
+			
+			//Si el movimiento en Y se opone (ej: arriba luego abajo)
+			if (dir1.Y != 0 && dir2.Y != 0 && Mathf.Sign(dir1.Y) != Mathf.Sign(dir2.Y))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	private void FindAllPathsDFS(Vector2I current, Vector2I end, List<Vector2I> currentPath, 
