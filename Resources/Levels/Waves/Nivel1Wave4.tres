@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://cs00julnfwxgw"]
+
+[ext_resource type="Script" uid="uid://cb2hjx5dpnwag" path="res://Scripts/EnemySpawnData.cs" id="1_rl760"]
+[ext_resource type="Script" uid="uid://cdyhvn611nitx" path="res://Scripts/WaveData.cs" id="2_34k1c"]
+
+[sub_resource type="Resource" id="Resource_1lv3h"]
+script = ExtResource("1_rl760")
+Type = 1
+Count = 5
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_1f51v"]
+script = ExtResource("1_rl760")
+Count = 2
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_bohph"]
+script = ExtResource("1_rl760")
+Count = 3
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_gyeuv"]
+script = ExtResource("1_rl760")
+Type = 1
+Count = 5
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_432lp"]
+script = ExtResource("1_rl760")
+Count = 3
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_350o6"]
+script = ExtResource("1_rl760")
+Type = 2
+Count = 2
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[resource]
+script = ExtResource("2_34k1c")
+Enemies = Array[ExtResource("1_rl760")]([SubResource("Resource_1lv3h"), SubResource("Resource_1f51v"), SubResource("Resource_bohph"), SubResource("Resource_gyeuv"), SubResource("Resource_432lp"), SubResource("Resource_350o6")])
+SpawnDelay = 0.5
+metadata/_custom_type_script = "uid://cdyhvn611nitx"

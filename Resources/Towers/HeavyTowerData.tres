@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TowerData" format=3 uid="uid://kjna86iy1eiu"]
+
+[ext_resource type="PackedScene" uid="uid://do1gm4mj6ek7i" path="res://Escenas/Bullets/HeavyBullet.tscn" id="1_33tui"]
+[ext_resource type="Script" uid="uid://buvumynxrdvyb" path="res://Scripts/TowerData.cs" id="1_q7u15"]
+[ext_resource type="Texture2D" uid="uid://bniesx6cbc2q3" path="res://Assets Propios/Torres/Quimico.png" id="3_33tui"]
+
+[resource]
+script = ExtResource("1_q7u15")
+Name = "Heavy"
+icon = ExtResource("3_33tui")
+TowerType = 2
+BulletScene = ExtResource("1_33tui")
+FireRate = 0.5
+Cost = 75
+metadata/_custom_type_script = "uid://buvumynxrdvyb"

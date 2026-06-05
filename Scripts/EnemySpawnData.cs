@@ -1,5 +1,8 @@
-public class EnemySpawnData(EnemyType type, int count)
+using Godot;
+
+[GlobalClass]
+public partial class EnemySpawnData : Resource
 {
-	public readonly EnemyType Type = type; //Tipo de enemigo a spawnear
-	public readonly int Count = count; //Cantidad de enemigos a spawnear de un tipo
+	[Export] public EnemyType Type; //Tipo de enemigo a spawnear
+	[Export] public int Count = 1; //Cantidad de enemigos a spawnear de un tipo
 }
