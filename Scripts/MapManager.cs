@@ -19,10 +19,10 @@ public partial class MapManager : Node
 		//Inicializa el mapa
 		InitializeMap();
 		
-		//Cachea todos los caminos posibles
-		Vector2I start = GetStart();
-		Vector2I end = GetEnd();
-		cachedPaths = FindAllPaths(start, end);
+		//Cachea todos los caminos posibles entre todos los inicios y finales
+		List<Vector2I> starts = GetAllStarts();
+		List<Vector2I> ends = GetAllEnds();
+		cachedPaths = FindAllPathsBetweenAllStartsEnds(starts, ends);
 	}
 	
 	private void InitializeMap()
@@ -71,30 +71,32 @@ public partial class MapManager : Node
 		return map[y,x] == 0;
 	}
 	
-	private Vector2I GetStart()
+	private List<Vector2I> GetAllStarts()
 	{
-		//Recorre la matriz y busca el inicio
+		List<Vector2I> starts = new List<Vector2I>();
+		//Recorre la matriz y busca todos los inicios
 		for (int y = 0; y < height; y++)
 		{
 			for (int x = 0; x < width; x++)
 			{
-				if(map[y,x] == 2) return new Vector2I(x,y);
+				if(map[y,x] == 2) starts.Add(new Vector2I(x,y));
 			}
 		}
-		return Vector2I.Zero;
+		return starts;
 	}
 	
-	private Vector2I GetEnd()
+	private List<Vector2I> GetAllEnds()
 	{
-		//Recorre la matriz y busca el final
+		List<Vector2I> ends = new List<Vector2I>();
+		//Recorre la matriz y busca todos los finales
 		for (int y = 0; y < height; y++)
 		{
 			for (int x = 0; x < width; x++)
 			{
-				if(map[y,x] == 3) return new Vector2I(x,y);
+				if(map[y,x] == 3) ends.Add(new Vector2I(x,y));
 			}
 		}
-		return Vector2I.Zero;
+		return ends;
 	}
 	
 	public List<Vector2I> GetPath()
@@ -106,6 +108,26 @@ public partial class MapManager : Node
 		Random random = new Random();
 		int randomIndex = random.Next(cachedPaths.Count);
 		return cachedPaths[randomIndex];
+	}
+	
+	private List<List<Vector2I>> FindAllPathsBetweenAllStartsEnds(List<Vector2I> starts, List<Vector2I> ends)
+	{
+		List<List<Vector2I>> allPaths = new List<List<Vector2I>>();
+		
+		//Si no hay inicios o finales, retornar lista vacía
+		if (starts.Count == 0 || ends.Count == 0) return allPaths;
+		
+		//Encontrar caminos entre cada combinación de inicio-final
+		foreach (var start in starts)
+		{
+			foreach (var end in ends)
+			{
+				List<List<Vector2I>> pathsBetween = FindAllPaths(start, end);
+				allPaths.AddRange(pathsBetween);
+			}
+		}
+		
+		return allPaths;
 	}
 	
 	private List<List<Vector2I>> FindAllPaths(Vector2I start, Vector2I end)
