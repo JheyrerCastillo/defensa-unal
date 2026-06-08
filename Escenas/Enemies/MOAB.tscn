@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dh3h2ot2ipdr1"]
+
+[ext_resource type="Script" uid="uid://bso1axoo78sg4" path="res://Scripts/Moab.cs" id="1_urk2n"]
+[ext_resource type="Texture2D" uid="uid://dvmje4uu2wv2n" path="res://Assets Propios/Enemigos/Tanqueta3.png" id="2_60sqa"]
+[ext_resource type="Texture2D" uid="uid://djo0lqjghnajh" path="res://Assets Propios/Enemigos/ESMAD_Atras.png" id="2_dyroh"]
+[ext_resource type="Texture2D" uid="uid://mqd22otipch6" path="res://Assets Propios/Enemigos/ESMAD_perfild.png" id="2_hhxd6"]
+[ext_resource type="PackedScene" uid="uid://cokk2w40jouoe" path="res://Escenas/Efectos/Salsachoque2.tscn" id="3_60sqa"]
+[ext_resource type="Texture2D" uid="uid://chucnrbnx3cha" path="res://Assets Propios/Enemigos/ESMAD_Perfilti.png" id="3_kcf1t"]
+[ext_resource type="Script" uid="uid://cb2hjx5dpnwag" path="res://Scripts/EnemySpawnData.cs" id="4_6boop"]
+[ext_resource type="Texture2D" uid="uid://c3mwq61sj68go" path="res://Assets Propios/Enemigos/ESMAD_Frontal.png" id="4_60sqa"]
+
+[sub_resource type="Resource" id="Resource_opqhm"]
+script = ExtResource("4_6boop")
+Type = 1
+Count = 4
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[sub_resource type="Resource" id="Resource_3tak4"]
+script = ExtResource("4_6boop")
+Type = 3
+metadata/_custom_type_script = "uid://cb2hjx5dpnwag"
+
+[node name="ESMAD" type="CharacterBody2D" unique_id=796098660 node_paths=PackedStringArray("spawner")]
+script = ExtResource("1_urk2n")
+spawner = NodePath("")
+muelte = ExtResource("2_60sqa")
+BUM = ExtResource("3_60sqa")
+Enemies = Array[ExtResource("4_6boop")]([SubResource("Resource_opqhm"), SubResource("Resource_3tak4")])
+SpriteUp = ExtResource("2_dyroh")
+SpriteLeft = ExtResource("3_kcf1t")
+SpriteDown = ExtResource("4_60sqa")
+Reward = -2
+
+[node name="Derecha" type="Sprite2D" parent="." unique_id=741814268]
+position = Vector2(0, 0.5)
+scale = Vector2(0.8, 0.787)
+texture = ExtResource("2_hhxd6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1976604252]
+position = Vector2(-0.9999981, -1)
+scale = Vector2(1.3728448, 1.1449468)
+polygon = PackedVector2Array(-1.3709068e-06, -20.961672, -20.395605, -19.214867, -24.766092, -6.113821, -27.67975, 19.214867, 26.951332, 18.341463, 28.408161, 7.860627, 28.408161, 0.873403, 28.408161, -7.8606267, 23.30926, -15.721255)

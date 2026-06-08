@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ctty1eaflyw6s" path="res://Escenas/Enemies/Enemy.tscn" id="8_tb7ab"]
 [ext_resource type="PackedScene" uid="uid://bhfpg2cd27kww" path="res://Escenas/Enemies/RiotEsmad.tscn" id="9_u816o"]
 [ext_resource type="PackedScene" uid="uid://cmp60mkguhgym" path="res://Escenas/Enemies/Capucho.tscn" id="10_4p4hw"]
+[ext_resource type="PackedScene" uid="uid://dh3h2ot2ipdr1" path="res://Escenas/Enemies/MOAB.tscn" id="11_0accx"]
 [ext_resource type="Texture2D" uid="uid://dcy2ghuf8wd6i" path="res://Assets/kenney_tower-defense-top-down/Tilesheet/towerDefense_tilesheet.png" id="11_h66cw"]
 [ext_resource type="Texture2D" uid="uid://m1kd8vdppt2t" path="res://Assets/kenney_tower-defense-top-down/edificiosYCyt.png" id="12_8btek"]
 [ext_resource type="Script" uid="uid://12f8wu5ashf1" path="res://Scripts/WaveManager.cs" id="13_xrajd"]
@@ -18,9 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://dgaf20x4tag3x" path="res://Escenas/Towers/FastTower.tscn" id="15_oqg2m"]
 [ext_resource type="PackedScene" uid="uid://bbwqlhmim3uwb" path="res://Escenas/Towers/Tower.tscn" id="16_ulaji"]
 [ext_resource type="PackedScene" uid="uid://hf6alo7ujmd" path="res://Escenas/Towers/HeavyTower.tscn" id="17_1cog5"]
-[ext_resource type="Resource" uid="uid://dqdy1218wisti" path="res://Resources/Towers/NormalTowerData.tres" id="18_70tjt"]
-[ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/Towers/FastTowerData.tres" id="19_s154q"]
-[ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/Towers/HeavyTowerData.tres" id="20_rtard"]
+[ext_resource type="Resource" uid="uid://dqdy1218wisti" path="res://Resources/NormalTowerData.tres" id="18_70tjt"]
+[ext_resource type="Resource" uid="uid://bt4txhaj4yrea" path="res://Resources/FastTowerData.tres" id="19_s154q"]
+[ext_resource type="Resource" uid="uid://kjna86iy1eiu" path="res://Resources/HeavyTowerData.tres" id="20_rtard"]
 [ext_resource type="Script" uid="uid://diskkq5mdp5jp" path="res://Scripts/MoneyManager.cs" id="21_cdfwl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trn2v"]
@@ -5332,6 +5333,7 @@ script = ExtResource("7_qbb6u")
 EnemyScene = ExtResource("8_tb7ab")
 HeavyEnemyScene = ExtResource("9_u816o")
 FastEnemyScene = ExtResource("10_4p4hw")
+MoabEnemyScene = ExtResource("11_0accx")
 
 [node name="TileMap2" type="TileMap" parent="." unique_id=177027339]
 tile_set = SubResource("TileSet_8fxbh")

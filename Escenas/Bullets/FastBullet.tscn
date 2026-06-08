@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://lry754t212a6"]
 
 [ext_resource type="Script" uid="uid://b2r5jbu2hrs7t" path="res://Scripts/FastBullet.cs" id="1_0kse6"]
-[ext_resource type="Texture2D" uid="uid://dxoedvvowlsk1" path="res://Assets Propios/Balas/stewart.png" id="2_75dvb"]
-[ext_resource type="PackedScene" uid="uid://c24sawer2il3" path="res://Escenas/Bullets/Salsachoque.tscn" id="2_ab1o3"]
+[ext_resource type="Texture2D" uid="uid://dxoedvvowlsk1" path="res://Assets Propios/stewart.png" id="2_75dvb"]
+[ext_resource type="PackedScene" uid="uid://c24sawer2il3" path="res://Escenas/Efectos/Salsachoque.tscn" id="2_ab1o3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_np30r"]
 radius = 9.0

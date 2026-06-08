@@ -3,5 +3,6 @@ public enum EnemyType
 {
 	Normal,
 	Fast,
-	Heavy
+	Heavy,
+	Moab
 }

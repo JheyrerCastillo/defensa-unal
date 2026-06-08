@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bhfpg2cd27kww" path="res://Escenas/Enemies/RiotEsmad.tscn" id="9_8xnm5"]
 [ext_resource type="PackedScene" uid="uid://cmp60mkguhgym" path="res://Escenas/Enemies/Capucho.tscn" id="10_abdb7"]
 [ext_resource type="Texture2D" uid="uid://dcy2ghuf8wd6i" path="res://Assets/kenney_tower-defense-top-down/Tilesheet/towerDefense_tilesheet.png" id="11_1eukg"]
+[ext_resource type="PackedScene" uid="uid://dh3h2ot2ipdr1" path="res://Escenas/Enemies/MOAB.tscn" id="11_c6x6f"]
 [ext_resource type="Texture2D" uid="uid://djami1vu28obm" path="res://Assets/kenney_tower-defense-top-down/edificiosInge.png" id="12_bkxef"]
 [ext_resource type="Script" uid="uid://12f8wu5ashf1" path="res://Scripts/WaveManager.cs" id="13_cbwu0"]
 [ext_resource type="Script" uid="uid://b4bdfkylrmhdg" path="res://Scripts/BuildManager.cs" id="14_u8sr6"]
@@ -5277,6 +5278,7 @@ script = ExtResource("7_p0ljf")
 EnemyScene = ExtResource("8_6i0av")
 HeavyEnemyScene = ExtResource("9_8xnm5")
 FastEnemyScene = ExtResource("10_abdb7")
+MoabEnemyScene = ExtResource("11_c6x6f")
 
 [node name="TileMap2" type="TileMap" parent="." unique_id=177027339]
 tile_set = SubResource("TileSet_8fxbh")

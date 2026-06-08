@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bterro5ux628f" path="res://Scripts/Bullet.cs" id="1_5q0pg"]
 [ext_resource type="Texture2D" uid="uid://edj7l1edtxc4" path="res://Assets Propios/Balas/ladrillo.png" id="2_5nlqj"]
-[ext_resource type="PackedScene" uid="uid://c24sawer2il3" path="res://Escenas/Bullets/Salsachoque.tscn" id="2_hnry5"]
+[ext_resource type="PackedScene" uid="uid://c24sawer2il3" path="res://Escenas/Efectos/Salsachoque.tscn" id="2_hnry5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_np30r"]
 radius = 9.0

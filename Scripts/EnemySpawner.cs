@@ -6,16 +6,29 @@ public partial class EnemySpawner : Node2D
 	// Exporta en el inspector los enemigos
 	[Export] public PackedScene EnemyScene; 
 	[Export] public PackedScene HeavyEnemyScene; 
-	[Export] public PackedScene FastEnemyScene; 
+	[Export] public PackedScene FastEnemyScene;
+	[Export] public PackedScene MoabEnemyScene;
 	
-	private MapManager mapManager; //Nodo que maneja mapas
-	private TileMap tileMap; //Mapa en el que spawnear enemigos
-	private WaveManager waveManager; //Nodo que maneja las oleadas
-	private Game game;
-	private MoneyManager moneyManager;
+	protected MapManager mapManager; //Nodo que maneja mapas
+	protected TileMap tileMap; //Mapa en el que spawnear enemigos
+	protected WaveManager waveManager; //Nodo que maneja las oleadas
+	protected Game game;
+	protected MoneyManager moneyManager;
 	
-	private Dictionary<EnemyType, PackedScene> enemyScenes; //Diccionario de escenas de los enemigos
+	protected Dictionary<EnemyType, PackedScene> enemyScenes; //Diccionario de escenas de los enemigos
 	
+	public int index = 0;
+	public Vector2 position = Vector2.Zero;
+
+	public void SetIndex(int Newindex)
+	{
+		index = Newindex;
+	}
+
+	public void SetPosition(Vector2 Newposition)
+	{
+		position = Newposition;
+	}
 	public override void _Ready()
 	{
 		//Referencia de nodos necesarios
@@ -30,11 +43,12 @@ public partial class EnemySpawner : Node2D
 		{
 			{EnemyType.Normal, EnemyScene},
 			{EnemyType.Fast, FastEnemyScene},
-			{EnemyType.Heavy , HeavyEnemyScene}
+			{EnemyType.Heavy , HeavyEnemyScene},
+			{EnemyType.Moab, MoabEnemyScene}
 		};
 	}
 	
-	public void SpawnEnemy(EnemyType type)
+	public virtual void SpawnEnemy(EnemyType type ,bool Moab = false)
 	{
 		//Instancia un enemigo
 		if (!enemyScenes.TryGetValue(type, out var sceneToSpawn)) return;
@@ -48,6 +62,16 @@ public partial class EnemySpawner : Node2D
 		enemy.SetPath(path, tileMap);
 		
 		//Lo coloca en el mapa
-		AddChild(enemy);
+		if (Moab == false)
+		{
+			AddChild(enemy);	
+		}
+		else
+		{
+			enemy.Position = position;
+			enemy.SetIndex(index);
+			AddChild(enemy);
+		}
+			
 	}
 }

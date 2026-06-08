@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 
 public partial class Enemy : CharacterBody2D
 {
@@ -10,16 +11,16 @@ public partial class Enemy : CharacterBody2D
 	[Export] public float MaxHealth = 3; //Vida total del enemigo
 	[Export] public int Reward = 10; //Dinero obtenido al matar el enemigo
 
-	private Sprite2D sprite; // Creo la variable sprite para después poder cambiarla
+	protected Sprite2D sprite; // Creo la variable sprite para después poder cambiarla
 	private float currentHealth; //Vida maxima del enemigo
-	private bool isDead;
+	protected bool isDead;
 	
-	private Game game; //Nodo que maneja el juego
-	private MoneyManager moneyManager; //Nodo que maneja el dinero
-	private WaveManager waveManager; //Nodo que maneja las oleadas
+	protected Game game; //Nodo que maneja el juego
+	protected MoneyManager moneyManager; //Nodo que maneja el dinero
+	protected WaveManager waveManager; //Nodo que maneja las oleadas
 	
-	private List<Vector2> worldPath; //Lista de vectores del camino del enemigo
-	private int index; //Índice que indica hacia donde se mueve el enemigo
+	protected List<Vector2> worldPath; //Lista de vectores del camino del enemigo
+	protected int index; //Índice que indica hacia donde se mueve el enemigo
 	protected float Speed = 100f; //Velocidad del enemigo
 	
 	public void Inicializar(Game gameRef, MoneyManager moneyRef, WaveManager waveRef)
@@ -27,6 +28,17 @@ public partial class Enemy : CharacterBody2D
 		game = gameRef;
 		moneyManager = moneyRef;
 		waveManager = waveRef;
+	}
+
+	public void SetPosition(Vector2 position)
+	{
+		if (position == Position) return;
+		Position = position;
+	}
+
+	public void SetIndex(int Newindex)
+	{
+		index = Newindex;
 	}
 	
 	//Toma la vida actual del enemigo para otros scripts
@@ -57,7 +69,7 @@ public partial class Enemy : CharacterBody2D
 		}
 	}
 	
-	private void Die()
+	protected virtual void Die()
 	{
 		isDead = true;
 		//Se destruye y recompensa al jugador con una cantidad de dinero
@@ -101,6 +113,7 @@ public partial class Enemy : CharacterBody2D
 		Vector2 direction = (target - Position).Normalized();
 		double angulo = Math.Atan2(direction.Y, direction.X) *180 / Math.PI;
 		// Ve a qué dirección se mueve el enemigo y cambia el sprite
+		if (isDead == false){
 		if (angulo is < -60 and > -150)
 		{
 			sprite.Texture = SpriteUp;
@@ -119,7 +132,7 @@ public partial class Enemy : CharacterBody2D
 		{
 			sprite.Texture = SpriteDown;
 		}
-		
+		}
 		//Mueve al enemigo hacia el tile objetivo
 		Position = Position.MoveToward(target, Speed * (float)delta);
 		
