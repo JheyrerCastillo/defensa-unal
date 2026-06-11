@@ -8,7 +8,7 @@ public partial class WaveManager : Node
 	[Export] public LevelData LevelData; //Lista de oleadas
 
 	private bool allWavesFinished; //Verifica si las oleadas estaban finalizadas
-	private int aliveEnemies = 8; //Enemigos vivos
+	private int aliveEnemies; //Enemigos vivos
 	
 	public override async void _Ready()
 	{

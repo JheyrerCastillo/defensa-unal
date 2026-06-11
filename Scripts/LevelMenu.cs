@@ -29,6 +29,21 @@ public partial class LevelMenu : Control
     
 		GetTree().ChangeSceneToFile("res://Escenas/Main.tscn"); 
 	}
+	
+	private void _on_level_5_pressed()
+	{
+		GameData.NivelSeleccionado = "res://Escenas/Levels/Game5.tscn";
+    
+		GetTree().ChangeSceneToFile("res://Escenas/Main.tscn"); 
+	}
+	
+	private void _on_level_6_pressed()
+	{
+		GameData.NivelSeleccionado = "res://Escenas/Levels/Game6.tscn";
+    
+		GetTree().ChangeSceneToFile("res://Escenas/Main.tscn"); 
+	}
+	
 
 	private void _on_quit_pressed()
 	{
